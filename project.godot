@@ -16,12 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="cyberheist"
+run/main_scene="res://main_scene.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=2048
-window/size/height=1536
+window/size/height=768
 window/size/resizable=false
 
 [rendering]
