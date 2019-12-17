@@ -46,3 +46,6 @@ func _physics_process(delta):
 	
 	$Map.text = flattened_wall_map
 	$Player.text = flattened_entity_map
+
+func can_move(location):
+	return wall_map[location.y][location.x] == " "

@@ -16,12 +16,15 @@ func _input(event):
 		direction = 4 + direction
 
 func move(amount):
+	var loc_temp = Vector2(location.x, location.y)
 	match direction:
 		0:
-			location.y -= amount
+			loc_temp.y -= amount
 		1:
-			location.x += amount
+			loc_temp.x += amount
 		2:
-			location.y += amount
+			loc_temp.y += amount
 		3:
-			location.x -= amount
+			loc_temp.x -= amount
+	if $Minimap.can_move(loc_temp):
+		location = loc_temp
