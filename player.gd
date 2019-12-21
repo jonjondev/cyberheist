@@ -26,5 +26,5 @@ func move(amount):
 			loc_temp.y += amount
 		3:
 			loc_temp.x -= amount
-	if $Grid.can_move(loc_temp):
+	if $Grid.is_empty(loc_temp):
 		location = loc_temp

@@ -13,7 +13,7 @@ var wall_map = [
 
 var entity_map = [
 [" ", " ", " ", " "],
-[" ", " ", " ", " "],
+[" ", "X", " ", " "],
 [" ", " ", " ", " "],
 [" ", " ", " ", " "],
 [" ", " ", " ", " "],
@@ -23,5 +23,5 @@ func _physics_process(delta):
 	player_loc = get_parent().location
 	player_direction = get_parent().direction
 
-func can_move(location):
+func is_empty(location):
 	return wall_map[location.y][location.x] == " "

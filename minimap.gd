@@ -7,6 +7,11 @@ var direction_chars = ["▲", "►", "▼", "◄"]
 func _physics_process(delta):
 	var temp_map = grid.wall_map.duplicate(true)
 	
+	for i in range(temp_map.size()):
+		for j in range(temp_map[i].size()):
+			if temp_map[i][j] != "■":
+				temp_map[i][j] = grid.entity_map[i][j]
+	
 	var rows = []
 	for i in range(temp_map.size()):
 		if i == grid.player_loc.y:
