@@ -1,18 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://lane.png" type="Texture" id=2]
 [ext_resource path="res://grid.gd" type="Script" id=3]
 [ext_resource path="res://Menlo-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://minimap.gd" type="Script" id=5]
+[ext_resource path="res://minimap.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 60
-extra_spacing_bottom = -38
 font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D"]
@@ -35,11 +30,4 @@ text = "Press f to perform the hack"
 align = 1
 autowrap = true
 
-[node name="Minimap" type="RichTextLabel" parent="."]
-margin_left = 48.0
-margin_top = 20.0
-margin_right = 770.0
-margin_bottom = 580.0
-custom_fonts/normal_font = SubResource( 2 )
-bbcode_enabled = true
-script = ExtResource( 5 )
+[node name="Minimap" parent="." instance=ExtResource( 5 )]

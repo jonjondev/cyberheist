@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-onready var grid = get_parent().get_node("Grid")
+onready var grid = $"../Grid"
 
 var direction_chars = ["▲", "►", "▼", "◄"]
 
