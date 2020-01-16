@@ -11,8 +11,6 @@ func _physics_process(delta):
 					["", "", "", "", ""],
 					["", "", "", "", ""]]
 	
-	
-	
 	var display_y = grid.player_loc.y - 2
 	for i in range(5):
 		display_y += 1
@@ -20,7 +18,10 @@ func _physics_process(delta):
 		for j in range(5):
 			display_x += 1
 			if display_x > 0 and display_y > 0 and display_x < grid.wall_map[0].size() and display_y < grid.wall_map.size():
-				temp_map[i][j] = grid.wall_map[display_y - 1][display_x - 1]
+				if grid.wall_map[display_y - 1][display_x - 1] == "■":
+					temp_map[i][j] = grid.wall_map[display_y - 1][display_x - 1]
+				else:
+					temp_map[i][j] = grid.entity_map[display_y - 1][display_x - 1]
 			else:
 				temp_map[i][j] = "■"
 		
