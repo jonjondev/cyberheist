@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://lane.png" type="Texture" id=2]
 [ext_resource path="res://grid.gd" type="Script" id=3]
-[ext_resource path="res://Menlo-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://hud.tscn" type="PackedScene" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 4 )
+[ext_resource path="res://hud.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,14 +15,4 @@ texture = ExtResource( 2 )
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 835.465
-margin_top = 644.288
-margin_right = 1253.46
-margin_bottom = 818.288
-custom_fonts/font = SubResource( 1 )
-text = "Press f to perform the hack"
-align = 1
-autowrap = true
-
-[node name="Minimap" parent="." instance=ExtResource( 5 )]
+[node name="Minimap" parent="." instance=ExtResource( 4 )]
