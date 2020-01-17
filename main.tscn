@@ -4,7 +4,7 @@
 [ext_resource path="res://lane.png" type="Texture" id=2]
 [ext_resource path="res://grid.gd" type="Script" id=3]
 [ext_resource path="res://Menlo-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://minimap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://hud.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
