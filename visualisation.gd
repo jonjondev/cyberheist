@@ -23,3 +23,9 @@ func get_tile(map, location, direction, distance):
 	match direction:
 		0:
 			return map[location.y - distance][location.x]
+		1:
+			return map[location.y][location.x + distance]
+		2:
+			return map[location.y + distance][location.x]
+		3:
+			return map[location.y][location.x - distance]
