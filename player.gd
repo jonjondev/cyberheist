@@ -1,6 +1,6 @@
 extends Node2D
 
-var location = Vector2(1, 3)
+var location = Vector2(1, 5)
 var direction = 0
 
 func _input(event):

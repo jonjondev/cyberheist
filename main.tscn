@@ -18,6 +18,7 @@ script = ExtResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="Wall" type="Sprite" parent="Visualisation"]
+visible = false
 texture = ExtResource( 4 )
 
 [node name="Grid" type="Node2D" parent="."]

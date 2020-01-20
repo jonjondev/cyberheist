@@ -12,18 +12,14 @@ func _physics_process(delta):
 	var player_direction = get_parent().direction
 	var map = $"../Grid".wall_map
 	
-	if player_direction == 0:
-		if map[player_location.y-1][player_location.x] == "■":
+	$Wall.visible = false
+	for i in range(walls.size()):
+		if get_tile(map, player_location, player_direction, i + 1) == "■":
+			$Wall.texture = walls[i]
 			$Wall.visible = true
-			$Wall.texture = walls[0]
-		elif map[player_location.y-2][player_location.x] == "■":
-			$Wall.visible = true
-			$Wall.texture = walls[1]
-		elif map[player_location.y-3][player_location.x] == "■":
-			$Wall.visible = true
-			$Wall.texture = walls[2]
-		elif map[player_location.y-4][player_location.x] == "■":
-			$Wall.visible = true
-			$Wall.texture = walls[3]
-		else:
-			$Wall.visible = false
+			break
+
+func get_tile(map, location, direction, distance):
+	match direction:
+		0:
+			return map[location.y - distance][location.x]
