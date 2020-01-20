@@ -3,7 +3,8 @@ extends Node2D
 onready var walls = [
 	preload("res://res/wall_near.png"),
 	preload("res://res/wall_middle.png"),
-	preload("res://res/wall_far.png")
+	preload("res://res/wall_far.png"),
+	preload("res://res/wall_very_far.png")
 ]
 
 func _physics_process(delta):
@@ -21,5 +22,8 @@ func _physics_process(delta):
 		elif map[player_location.y-3][player_location.x] == "■":
 			$Wall.visible = true
 			$Wall.texture = walls[2]
+		elif map[player_location.y-4][player_location.x] == "■":
+			$Wall.visible = true
+			$Wall.texture = walls[3]
 		else:
 			$Wall.visible = false
