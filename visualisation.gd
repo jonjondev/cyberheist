@@ -4,7 +4,19 @@ onready var walls = [
 	preload("res://res/wall_near.png"),
 	preload("res://res/wall_middle.png"),
 	preload("res://res/wall_far.png"),
-	preload("res://res/wall_very_far.png")
+	#preload("res://res/wall_very_far.png")
+]
+
+onready var lefts = [
+	preload("res://res/left_near.png"),
+	preload("res://res/left_middle.png"),
+	preload("res://res/left_far.png"),
+]
+
+onready var rights = [
+	preload("res://res/right_near.png"),
+	preload("res://res/right_middle.png"),
+	preload("res://res/right_far.png"),
 ]
 
 func _physics_process(delta):
