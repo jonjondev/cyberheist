@@ -41,3 +41,15 @@ func get_tile(map, location, direction, distance):
 			return map[location.y + distance][location.x]
 		3:
 			return map[location.y][location.x - distance]
+
+
+func get_wall_tile(map, location, direction, distance, offset):
+	match direction:
+		0:
+			return map[location.y - distance][location.x -offset]
+		1:
+			return map[location.y -offset][location.x + distance]
+		2:
+			return map[location.y + distance][location.x + offset]
+		3:
+			return map[location.y + offset][location.x - distance]
