@@ -28,34 +28,23 @@ func _physics_process(delta):
 	$Left.visible = false
 	$Right.visible = false
 	for i in range(walls.size()):
-		if get_tile(map, player_location, player_direction, i + 1) == "■":
+		if get_tile(map, player_location, player_direction, i + 1, 0) == "■":
 			$Wall.texture = walls[i]
 			$Wall.visible = true
 			for j in range(i, -1, -1):
-				if get_wall_tile(map, player_location, player_direction, j, 1) == "■":
+				if get_tile(map, player_location, player_direction, j, 1) == "■":
 					$Left.texture = lefts[j]
 					$Left.visible = true
 					break
 			for j in range(i, -1, -1):
-				if get_wall_tile(map, player_location, player_direction, j, -1) == "■":
+				if get_tile(map, player_location, player_direction, j, -1) == "■":
 					$Right.texture = rights[j]
 					$Right.visible = true
 					break
 			break
 
-func get_tile(map, location, direction, distance):
-	match direction:
-		0:
-			return map[location.y - distance][location.x]
-		1:
-			return map[location.y][location.x + distance]
-		2:
-			return map[location.y + distance][location.x]
-		3:
-			return map[location.y][location.x - distance]
 
-
-func get_wall_tile(map, location, direction, distance, offset):
+func get_tile(map, location, direction, distance, offset):
 	match direction:
 		0:
 			return map[location.y - distance][location.x -offset]
