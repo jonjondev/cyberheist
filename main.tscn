@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://visualisation.gd" type="Script" id=2]
 [ext_resource path="res://res/ground.png" type="Texture" id=3]
-[ext_resource path="res://res/wall_far.png" type="Texture" id=4]
-[ext_resource path="res://grid.gd" type="Script" id=5]
-[ext_resource path="res://hud.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/right_far.png" type="Texture" id=4]
+[ext_resource path="res://res/left_far.png" type="Texture" id=5]
+[ext_resource path="res://res/wall_far.png" type="Texture" id=6]
+[ext_resource path="res://grid.gd" type="Script" id=7]
+[ext_resource path="res://hud.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -17,11 +19,19 @@ script = ExtResource( 2 )
 [node name="Ground" type="Sprite" parent="Visualisation"]
 texture = ExtResource( 3 )
 
-[node name="Wall" type="Sprite" parent="Visualisation"]
+[node name="Right" type="Sprite" parent="Visualisation"]
 visible = false
 texture = ExtResource( 4 )
 
-[node name="Grid" type="Node2D" parent="."]
-script = ExtResource( 5 )
+[node name="Left" type="Sprite" parent="Visualisation"]
+visible = false
+texture = ExtResource( 5 )
 
-[node name="Minimap" parent="." instance=ExtResource( 6 )]
+[node name="Wall" type="Sprite" parent="Visualisation"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Minimap" parent="." instance=ExtResource( 8 )]
