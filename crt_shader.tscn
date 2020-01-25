@@ -245,9 +245,9 @@ texture = ExtResource( 3 )
 expand = true
 
 [node name="CRTFrame" type="TextureRect" parent="."]
-margin_top = -0.804382
-margin_right = 1085.61
-margin_bottom = 1038.2
+margin_top = -1.0
+margin_right = 1086.0
+margin_bottom = 1040.0
 rect_scale = Vector2( 0.946396, 0.738916 )
 texture = ExtResource( 4 )
 stretch_mode = 1
