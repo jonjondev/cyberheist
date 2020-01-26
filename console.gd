@@ -13,6 +13,11 @@ func _input(event):
 			new_char = " "
 		elif event_key == "Period":
 			new_char = "."
+		elif event_key == "Enter":
+			new_char = "\n> "
+		elif event_key == "BackSpace":
+			if text.substr(text.length() - 2, text.length()) != "> ":
+				text = text.left(text.length() - 1)
 		elif event_key.begins_with("Shift+"):
 			# Add modifiers here
 			new_char = "!!!"
