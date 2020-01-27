@@ -28,6 +28,12 @@ func _input(event):
 				event_key = event_key.lstrip("Shift+")
 				if event_key.to_int() > 0 or event_key == "0":
 					new_char = shift_variants[event_key.to_int()-1]
+				var regex = RegEx.new()
+				regex.compile("^[A-Za-z]+$")
+				var result = regex.search(event_key)
+				
+				if result:
+					new_char = event_key
 				# Add modifiers here
 				#new_char = "!!!"
 			else:
