@@ -3,6 +3,9 @@ extends Label
 #func _ready():
 	#text = text + " ▋"
 
+var shift_variants = ['!', '@', '#', '$', '%', 
+					  '^', '&', '*', '(', ')']
+
 var awake = false
 
 func _input(event):
@@ -22,8 +25,11 @@ func _input(event):
 				if text.substr(text.length() - 2, text.length()) != "> ":
 					text = text.left(text.length() - 1)
 			elif event_key.begins_with("Shift+"):
+				event_key = event_key.lstrip("Shift+")
+				if event_key.to_int() > 0 or event_key == "0":
+					new_char = shift_variants[event_key.to_int()-1]
 				# Add modifiers here
-				new_char = "!!!"
+				#new_char = "!!!"
 			else:
 				#new_char = event_key
 				pass
