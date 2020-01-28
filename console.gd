@@ -1,6 +1,10 @@
 extends Label
 
-#func _ready():
+var regex_alphabetical
+
+func _ready():
+	regex_alphabetical = RegEx.new()
+	regex_alphabetical.compile("^[A-Za-z]")
 	#text = text + " ▋"
 
 var shift_variants = ['!', '@', '#', '$', '%', 
@@ -28,13 +32,9 @@ func _input(event):
 				event_key = event_key.lstrip("Shift+")
 				if event_key.to_int() > 0 or event_key == "0":
 					new_char = shift_variants[event_key.to_int()-1]
-				var regex = RegEx.new()
-				regex.compile("^[A-Za-z]+$")
-				var result = regex.search(event_key)
-				
-				if result:
+				if event_key.length() == 1 and regex_alphabetical.search(event_key):
 					new_char = event_key
-				# Add modifiers here
+				# Add modifiers here use shift input map?
 				#new_char = "!!!"
 			else:
 				#new_char = event_key
