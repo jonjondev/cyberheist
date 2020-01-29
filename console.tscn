@@ -21,6 +21,6 @@ custom_fonts/font = SubResource( 1 )
 autowrap = true
 script = ExtResource( 2 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Timer" type="Timer" parent="Label"]
+wait_time = 0.65
 autostart = true

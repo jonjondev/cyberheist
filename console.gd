@@ -39,10 +39,25 @@ var character_input_map = {
 	'Shift+Slash': '?',
 }
 
+onready var timer = $Timer
+var cursor_on = false
+var blink_freeze = 0
+
 func _ready():
 	text = "\n> "
 	regex_alphabetical.compile("^[A-Za-z]")
-	#text = text + " ▋"
+	timer.connect("timeout", self, "blink")
+
+func blink():
+	if blink_freeze > 0:
+		blink_freeze -= 1
+	else:
+		var cursor_pos = text.find_last("█")
+		if cursor_pos != -1:
+			text = text.replace("█", "")
+		else:
+			text = text + "█"
+		cursor_on = not cursor_on
 
 func _input(event):
 	if awake:
@@ -58,14 +73,22 @@ func _input(event):
 				var line = text.substr(text.find_last("\n> ") + 3, text.length())
 				new_char = "\n" + get_response(line) + "\n> "
 			elif event_key == "BackSpace":
-				if text.substr(text.length() - 3, text.length()) != "\n> ":
-					text = text.left(text.length() - 1)
+				if text.substr(text.length() - 4, text.length()) != "\n> ":
+					start_blink_freeze()
+					text = text.left(text.length() - 2) + "█"
 			elif event_key.begins_with("Shift+"):
 				var stripped_event_key = event_key.replace("Shift+", "")
 				if stripped_event_key.length() == 1 and regex_alphabetical.search(stripped_event_key):
 					new_char = stripped_event_key
 			if new_char:
-				text = text + new_char
+				start_blink_freeze()
+				text = text.insert(text.length() - 1, new_char)
+
+func start_blink_freeze():
+	blink_freeze = 1
+	text = text.replace("█", "")
+	text = text + "█"
+	cursor_on = true
 
 func get_response(line):
 	var response
