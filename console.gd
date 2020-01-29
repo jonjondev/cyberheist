@@ -1,6 +1,7 @@
 extends Label
 
-var regex_alphabetical
+var awake = false
+var regex_alphabetical = RegEx.new()
 
 var character_input_map = {
 	'QuoteLeft': '`',
@@ -39,11 +40,9 @@ var character_input_map = {
 }
 
 func _ready():
-	regex_alphabetical = RegEx.new()
+	text = "\n> "
 	regex_alphabetical.compile("^[A-Za-z]")
 	#text = text + " ▋"
-
-var awake = false
 
 func _input(event):
 	if awake:
@@ -56,9 +55,10 @@ func _input(event):
 			elif event_key.length() == 1:
 				new_char = event.as_text().to_lower()
 			elif event_key == "Enter":
-				new_char = "\n> "
+				var line = text.substr(text.find_last("\n> ") + 3, text.length())
+				new_char = "\n" + get_response(line) + "\n> "
 			elif event_key == "BackSpace":
-				if text.substr(text.length() - 2, text.length()) != "> ":
+				if text.substr(text.length() - 3, text.length()) != "\n> ":
 					text = text.left(text.length() - 1)
 			elif event_key.begins_with("Shift+"):
 				var stripped_event_key = event_key.replace("Shift+", "")
@@ -66,3 +66,23 @@ func _input(event):
 					new_char = stripped_event_key
 			if new_char:
 				text = text + new_char
+
+func get_response(line):
+	var response
+	if line == "--help":
+		response = "git gud, scrub!"
+	elif line == "cd /":
+		response = "changing directories..."
+	elif line == "l":
+		response = "listing items..."
+	else:
+		if line.length() > 0:
+			response = "command not found: " + line
+		else:
+			response = ""
+	return response
+
+
+
+
+

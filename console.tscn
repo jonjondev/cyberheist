@@ -13,11 +13,14 @@ margin_bottom = 766.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 35.0
-margin_top = 39.0
-margin_right = 985.0
-margin_bottom = 730.0
+margin_left = 36.7898
+margin_top = 1.41376
+margin_right = 986.79
+margin_bottom = 692.414
 custom_fonts/font = SubResource( 1 )
-text = "> "
 autowrap = true
 script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
