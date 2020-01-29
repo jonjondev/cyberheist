@@ -70,11 +70,12 @@ func _input(event):
 			elif event_key.length() == 1:
 				new_char = event.as_text().to_lower()
 			elif event_key == "Enter":
-				var line = text.substr(text.find_last("\n> ") + 3, text.length())
-				new_char = "\n" + get_response(line) + "\n> "
+				start_blink_freeze()
+				var line = text.substr(text.find_last("\n> ") + 3, text.length()).replace("█", "")
+				new_char = get_response(line) + "\n> "
 			elif event_key == "BackSpace":
-				if text.substr(text.length() - 4, text.length()) != "\n> ":
-					start_blink_freeze()
+				start_blink_freeze()
+				if text.substr(text.length()-4, text.length()).replace("█", "") != "\n> ":
 					text = text.left(text.length() - 2) + "█"
 			elif event_key.begins_with("Shift+"):
 				var stripped_event_key = event_key.replace("Shift+", "")
@@ -91,6 +92,7 @@ func start_blink_freeze():
 	cursor_on = true
 
 func get_response(line):
+	line = line.lstrip(" ").rstrip(" ")
 	var response
 	if line == "--help":
 		response = "git gud, scrub!"
@@ -103,9 +105,6 @@ func get_response(line):
 			response = "command not found: " + line
 		else:
 			response = ""
+	if response != "":
+		response = response.insert(0, "\n")
 	return response
-
-
-
-
-
