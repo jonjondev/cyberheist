@@ -2,6 +2,30 @@ extends Label
 
 var regex_alphabetical
 
+var shift_input_map = {
+	'1': '!',
+	'2': '@',
+	'3': '#',
+	'4': '$',
+	'5': '%',
+	'6': '^',
+	'7': '&',
+	'8': '*',
+	'9': '(',
+	'0': ')',
+	'QuoteLeft': '~',
+	'Minus': '_',
+	'Equal': '+',
+	'BraceLeft': '{',
+	'BraceRight': '}',
+	'BackSlash': '|',
+	'Semicolon': ':',
+	'Apostrophe': '"',
+	'Comma': '<',
+	'Period': '>',
+	'Slash': '?',
+}
+
 func _ready():
 	regex_alphabetical = RegEx.new()
 	regex_alphabetical.compile("^[A-Za-z]")
