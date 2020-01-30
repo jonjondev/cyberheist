@@ -102,14 +102,14 @@ func get_response(line):
 		response = "git gud, scrub!"
 	elif line[0] == "cd":
 		response = "changing directories..."
-	elif line[0] == "l":
-		var arg_error = check_arguments(line, "l", 0)
+	elif line[0] == "list":
+		var arg_error = check_arguments(line, "list", 0)
 		if arg_error: 
 			response = arg_error
 		else:
 			response = PoolStringArray(current_dir.keys()).join("\n")
-	elif line[0] == "cat":
-		var arg_error = check_arguments(line, "cat", 1)
+	elif line[0] == "view":
+		var arg_error = check_arguments(line, "view", 1)
 		if arg_error: 
 			response = arg_error
 		else:
@@ -117,7 +117,7 @@ func get_response(line):
 			if file:
 				response = file
 			else:
-				response = "cat: file not found"
+				response = "view: file not found"
 	else:
 		if line.size() > 0:
 			response = "command not found: " + line[0]
