@@ -116,6 +116,13 @@ func get_response(line):
 				response = file
 			else:
 				response = "view: file not found"
+	elif line[0] == "clear":
+		var arg_error = check_arguments(line, "clear", 0)
+		if arg_error: 
+			response = arg_error
+		else:
+			response = ""
+			text = ""
 	else:
 		if line.size() > 0:
 			response = "command not found: " + line[0]
