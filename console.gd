@@ -2,6 +2,10 @@ extends Label
 
 var awake = false
 var regex_alphabetical = RegEx.new()
+var current_dir = {
+	'welcome.txt': "Welcome to CyberHeist!",
+	'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
+}
 
 var character_input_map = {
 	'QuoteLeft': '`',
@@ -92,17 +96,17 @@ func start_blink_freeze():
 	cursor_on = true
 
 func get_response(line):
-	line = line.lstrip(" ").rstrip(" ")
+	line = line.lstrip(" ").rstrip(" ").split(" ")
 	var response
-	if line == "--help":
+	if line[0] == "--help":
 		response = "git gud, scrub!"
-	elif line == "cd /":
+	elif line[0] == "cd":
 		response = "changing directories..."
-	elif line == "l":
-		response = "listing items..."
+	elif line[0] == "l":
+		response = PoolStringArray(current_dir.keys()).join("\n")
 	else:
-		if line.length() > 0:
-			response = "command not found: " + line
+		if line.size() > 0:
+			response = "command not found: " + line[0]
 		else:
 			response = ""
 	if response != "":
