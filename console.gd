@@ -103,8 +103,9 @@ func get_response(line):
 	elif line[0] == "cd":
 		response = "changing directories..."
 	elif line[0] == "l":
-		if line.size() > 1:
-			response = "l: too many arguments, takes 0"
+		var arg_error = check_arguments(line, "l", 0)
+		if arg_error: 
+			response = arg_error
 		else:
 			response = PoolStringArray(current_dir.keys()).join("\n")
 	elif line[0] == "cat":
@@ -117,3 +118,7 @@ func get_response(line):
 	if response != "":
 		response = response.insert(0, "\n")
 	return response
+
+func check_arguments(line, func_name, expected_args):
+	if line.size() - 1 != expected_args:
+		return func_name + ": incorrect number of arguments, expected " + str(expected_args)
