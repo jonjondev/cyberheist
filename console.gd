@@ -98,10 +98,8 @@ func start_blink_freeze():
 func get_response(line):
 	line = line.lstrip(" ").rstrip(" ").split(" ")
 	var response
-	if line[0] == "--help":
-		response = "git gud, scrub!"
-	elif line[0] == "cd":
-		response = "changing directories..."
+	if line[0] == "help":
+		response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n---------------------------"
 	elif line[0] == "list":
 		var arg_error = check_arguments(line, "list", 0)
 		if arg_error: 
