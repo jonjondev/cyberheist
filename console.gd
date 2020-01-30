@@ -98,36 +98,37 @@ func start_blink_freeze():
 func get_response(line):
 	line = line.lstrip(" ").rstrip(" ").split(" ")
 	var response
-	if line[0] == "help":
-		response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n---------------------------"
-	elif line[0] == "list":
-		var arg_error = check_arguments(line, "list", 0)
-		if arg_error: 
-			response = arg_error
-		else:
-			response = PoolStringArray(current_dir.keys()).join("\n")
-	elif line[0] == "view":
-		var arg_error = check_arguments(line, "view", 1)
-		if arg_error: 
-			response = arg_error
-		else:
-			var file = current_dir.get(line[1])
-			if file:
-				response = file
+	match line[0]:
+		"help":
+			response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - clear: clears the contents of the terminal output, takes 0 args\n---------------------------"
+		"list":
+			var arg_error = check_arguments(line, "list", 0)
+			if arg_error: 
+				response = arg_error
 			else:
-				response = "view: file not found"
-	elif line[0] == "clear":
-		var arg_error = check_arguments(line, "clear", 0)
-		if arg_error: 
-			response = arg_error
-		else:
-			response = ""
-			text = ""
-	else:
-		if line.size() > 0:
-			response = "command not found: " + line[0]
-		else:
-			response = ""
+				response = PoolStringArray(current_dir.keys()).join("\n")
+		"view":
+			var arg_error = check_arguments(line, "view", 1)
+			if arg_error: 
+				response = arg_error
+			else:
+				var file = current_dir.get(line[1])
+				if file:
+					response = file
+				else:
+					response = "view: file not found"
+		"clear":
+			var arg_error = check_arguments(line, "clear", 0)
+			if arg_error: 
+				response = arg_error
+			else:
+				response = ""
+				text = ""
+		_:
+			if line.size() > 0:
+				response = "command not found: " + line[0]
+			else:
+				response = ""
 	if response != "":
 		response = response.insert(0, "\n")
 	return response
