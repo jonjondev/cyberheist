@@ -103,6 +103,11 @@ func get_response(line):
 	elif line[0] == "cd":
 		response = "changing directories..."
 	elif line[0] == "l":
+		if line.size() > 1:
+			response = "l: too many arguments, takes 0"
+		else:
+			response = PoolStringArray(current_dir.keys()).join("\n")
+	elif line[0] == "cat":
 		response = PoolStringArray(current_dir.keys()).join("\n")
 	else:
 		if line.size() > 0:
