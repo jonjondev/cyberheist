@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="cyberheist"
+config/name="CyberHeist"
 run/main_scene="res://crt_shader.tscn"
 config/icon="res://icon.png"
 
