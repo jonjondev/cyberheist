@@ -109,7 +109,15 @@ func get_response(line):
 		else:
 			response = PoolStringArray(current_dir.keys()).join("\n")
 	elif line[0] == "cat":
-		response = PoolStringArray(current_dir.keys()).join("\n")
+		var arg_error = check_arguments(line, "cat", 1)
+		if arg_error: 
+			response = arg_error
+		else:
+			var file = current_dir.get(line[1])
+			if file:
+				response = file
+			else:
+				response = "cat: file not found"
 	else:
 		if line.size() > 0:
 			response = "command not found: " + line[0]
