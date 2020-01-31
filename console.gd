@@ -199,7 +199,8 @@ func get_response(line):
 				response = "loading memory..."
 				$"../../Node2D".toggle_view()
 		_:
-			if line.size() > 0:
+			print(line.size())
+			if line[0] != "":
 				response = "command not found: " + line[0]
 			else:
 				response = ""
