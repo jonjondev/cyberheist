@@ -1,10 +1,13 @@
 extends Label
 
-var awake = false
+var awake = true
 var regex_alphabetical = RegEx.new()
 var current_dir = {
 	'welcome.txt': "Welcome to CyberHeist!",
 	'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
+	'/secrets': {
+		'secret.txt': "This was a decoy, you dumbfuck!",
+	},
 }
 
 var available_networks = {
@@ -47,7 +50,7 @@ var character_input_map = {
 	'Shift+Slash': '?',
 }
 
-onready var timer = $Timer
+onready var timer = $CursorBlinkTimer
 var cursor_on = false
 var blink_freeze = 0
 
@@ -124,7 +127,10 @@ func get_response(line):
 			else:
 				var file = current_dir.get(line[1])
 				if file:
-					response = file
+					if line[1].ends_with(".txt"):
+						response = file
+					else:
+						response = "view: cannot open directories"
 				else:
 					response = "view: file not found"
 		"clear":
@@ -134,6 +140,13 @@ func get_response(line):
 			else:
 				response = ""
 				text = ""
+		"hack":
+			var arg_error = check_arguments(line, "hack", 0)
+			if arg_error: 
+				response = arg_error
+			else:
+				response = "loading memory..."
+				$"../../Node2D".toggle_view()
 		_:
 			if line.size() > 0:
 				response = "command not found: " + line[0]
