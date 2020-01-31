@@ -2,9 +2,7 @@ extends Node2D
 
 onready var console = $"../Console/Label"
 var minimised = true
-
 onready var grid = $Grid
-
 
 func _input(event):
 	if not minimised:

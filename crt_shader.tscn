@@ -174,11 +174,11 @@ COLOR = c;
 [sub_resource type="ShaderMaterial" id=8]
 shader = SubResource( 7 )
 shader_param/screen_width = 1024.0
-shader_param/screen_height = 600.0
-shader_param/BarrelPower = 1.1
+shader_param/screen_height = 768.0
+shader_param/BarrelPower = 1.5
 shader_param/color_bleeding = 1.2
-shader_param/bleeding_range_x = 3.0
-shader_param/bleeding_range_y = 3.0
+shader_param/bleeding_range_x = 2.0
+shader_param/bleeding_range_y = 2.0
 shader_param/lines_distance = 4.0
 shader_param/scan_size = 2.0
 shader_param/scanline_alpha = 0.9
@@ -230,6 +230,9 @@ margin_right = 1026.0
 margin_bottom = 768.0
 texture = ExtResource( 3 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CRTFrame" type="TextureRect" parent="."]
 margin_top = -1.0
@@ -238,3 +241,6 @@ margin_bottom = 1040.0
 rect_scale = Vector2( 0.946396, 0.738916 )
 texture = ExtResource( 4 )
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

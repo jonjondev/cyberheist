@@ -12,11 +12,11 @@ var dirs = {
 	'available_networks': {
 		'pentagon': {
 			'welcome.txt': "Welcome to the pentagon's secret stash!'",
-			'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
+			'dontopen.txt': "Give your balls a tug, you tit-fucker!",
 			'/secrets': {
 				'../': 'available_networks/pentagon',
 				'password': '123',
-				'secret.txt': "This was a decoy, you dumbfuck!",
+				'secret.txt': "This was a decoy, you dumby!",
 			},
 			'@1475': 'null',
 		},
