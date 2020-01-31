@@ -2,23 +2,25 @@ extends Label
 
 var awake = true
 var regex_alphabetical = RegEx.new()
+var online = false
 
 var dirs = {
 	'local_dir': {
 		'welcome.txt': "Welcome to CyberHeist!",
-		'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
-		'/secrets': {
-			'../': 'local_dir',
-			'secret.txt': "This was a decoy, you dumbfuck!",
+	},
+	'available_networks': {
+		'pentagon': {
+			'welcome.txt': "Welcome to the pentagon's secret stash!'",
+			'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
+			'/secrets': {
+				'../': 'available_networks/pentagon',
+				'secret.txt': "This was a decoy, you dumbfuck!",
+			}
 		},
 	}
 }
 
 var current_dir = dirs['local_dir']
-
-var available_networks = {
-	'pentagon': '???'
-}
 
 var character_input_map = {
 	'QuoteLeft': '`',
@@ -125,7 +127,30 @@ func get_response(line):
 			if arg_error: 
 				response = arg_error
 			else:
-				response = PoolStringArray(available_networks.keys()).join("\n")
+				response = PoolStringArray(dirs['available_networks'].keys()).join("\n")
+		"connect":
+			var arg_error = check_arguments(line, "view", 1)
+			if arg_error: 
+				response = arg_error
+			else:
+				var network = dirs['available_networks'].get(line[1])
+				if network:
+					response = "connecting to network..."
+					online = true
+					current_dir = network
+				else:
+					response = "connect: network not found"
+		"disconnect":
+			if online:
+				var arg_error = check_arguments(line, "view", 0)
+				if arg_error: 
+					response = arg_error
+				else:
+					response = "disconnecting from network..."
+					online = false
+					current_dir = dirs['local_dir']
+			else:
+				response = "disconnect: you are not online"
 		"view":
 			var arg_error = check_arguments(line, "view", 1)
 			if arg_error: 
@@ -158,7 +183,10 @@ func get_response(line):
 						current_dir = directory
 					elif line[1] == "../":
 						response = "opening directory..."
-						current_dir = dirs[directory]
+						var path = directory.split("/")
+						current_dir = dirs
+						for step in path:
+							current_dir = current_dir[step]
 					else:
 						response = "goto: " + line[1] + " is not a directory"
 				else:
