@@ -12,6 +12,7 @@ var dirs = {
 	},
 	'available_networks': {
 		'pentagon': {
+			'ttd': 20,
 			'welcome.txt': "Welcome to the pentagon's secret stash!'",
 			'dontopen.txt': "Give your balls a tug, you tit-fucker!",
 			'/secrets': {
@@ -89,7 +90,6 @@ func countdown():
 		ttd -= 1
 		text = text.replace("\nconnected, time til disconect: " + str(ttd+1), "\nconnected, time til disconect: " + str(ttd))
 		if ttd <= 0:
-			print("reach")
 			$TTDTimer.stop()
 			text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
 			start_blink_freeze()
@@ -154,6 +154,7 @@ func get_response(line):
 				else:
 					var keys = current_dir.keys()
 					keys.erase("password")
+					keys.erase("ttd")
 					response = PoolStringArray(keys).join("\n")
 			"networks":
 				var arg_error = check_arguments(line, "list", 0)
@@ -169,7 +170,7 @@ func get_response(line):
 					var network = dirs['available_networks'].get(line[1])
 					if network:
 						text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
-						ttd = 10
+						ttd = network['ttd']
 						$TTDTimer.start()
 						response = "connecting to network...\nconnected, time til disconect: " + str(ttd)
 						online = true
