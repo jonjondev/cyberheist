@@ -3,6 +3,7 @@ extends Label
 var awake = true
 var regex_alphabetical = RegEx.new()
 var online = false
+var locked_dir = null
 
 var dirs = {
 	'local_dir': {
@@ -14,8 +15,10 @@ var dirs = {
 			'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
 			'/secrets': {
 				'../': 'available_networks/pentagon',
+				'password': '123',
 				'secret.txt': "This was a decoy, you dumbfuck!",
-			}
+			},
+			'@1475': 'null',
 		},
 	}
 }
@@ -90,11 +93,15 @@ func _input(event):
 				new_char = event.as_text().to_lower()
 			elif event_key == "Enter":
 				start_blink_freeze()
-				var line = text.substr(text.find_last("\n> ") + 3, text.length()).replace("█", "")
-				new_char = get_response(line) + "\n> "
+				var line
+				if locked_dir:
+					line = text.substr(text.find_last("\npassword: ") + 11, text.length()).replace("█", "")
+				else:
+					line = text.substr(text.find_last("\n> ") + 3, text.length()).replace("█", "")
+				new_char = get_response(line)
 			elif event_key == "BackSpace":
 				start_blink_freeze()
-				if text.substr(text.length()-4, text.length()).replace("█", "") != "\n> ":
+				if text.substr(text.length()-4, text.length()).replace("█", "") != "\n> " and text.substr(text.length()-12, text.length()).replace("█", "") != "\npassword: ":
 					text = text.left(text.length() - 2) + "█"
 			elif event_key.begins_with("Shift+"):
 				var stripped_event_key = event_key.replace("Shift+", "")
@@ -113,99 +120,109 @@ func start_blink_freeze():
 func get_response(line):
 	line = line.lstrip(" ").rstrip(" ").split(" ")
 	var response
-	match line[0]:
-		"help":
-			response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - clear: clears the contents of the terminal output, takes 0 args\n---------------------------"
-		"list":
-			var arg_error = check_arguments(line, "list", 0)
-			if arg_error: 
-				response = arg_error
-			else:
-				response = PoolStringArray(current_dir.keys()).join("\n")
-		"networks":
-			var arg_error = check_arguments(line, "list", 0)
-			if arg_error: 
-				response = arg_error
-			else:
-				response = PoolStringArray(dirs['available_networks'].keys()).join("\n")
-		"connect":
-			var arg_error = check_arguments(line, "view", 1)
-			if arg_error: 
-				response = arg_error
-			else:
-				var network = dirs['available_networks'].get(line[1])
-				if network:
-					response = "connecting to network..."
-					online = true
-					current_dir = network
-				else:
-					response = "connect: network not found"
-		"disconnect":
-			if online:
-				var arg_error = check_arguments(line, "view", 0)
+	if locked_dir:
+		if line[0] == locked_dir['password']:
+			current_dir = locked_dir
+			response = "opening directory..."
+		else:
+			response = "password incorrect"
+		locked_dir = null
+	else:
+		match line[0]:
+			"help":
+				response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - clear: clears the contents of the terminal output, takes 0 args\n---------------------------"
+			"list":
+				var arg_error = check_arguments(line, "list", 0)
 				if arg_error: 
 					response = arg_error
 				else:
-					response = "disconnecting from network..."
-					online = false
-					current_dir = dirs['local_dir']
-			else:
-				response = "disconnect: you are not online"
-		"view":
-			var arg_error = check_arguments(line, "view", 1)
-			if arg_error: 
-				response = arg_error
-			else:
-				var file = current_dir.get(line[1])
-				if file:
-					if line[1].ends_with(".txt"):
-						response = file
-					else:
-						response = "view: cannot open directories"
+					var keys = current_dir.keys()
+					keys.erase("password")
+					response = PoolStringArray(keys).join("\n")
+			"networks":
+				var arg_error = check_arguments(line, "list", 0)
+				if arg_error: 
+					response = arg_error
 				else:
-					response = "view: file not found"
-		"clear":
-			var arg_error = check_arguments(line, "clear", 0)
-			if arg_error: 
-				response = arg_error
-			else:
-				response = ""
-				text = ""
-		"goto":
-			var arg_error = check_arguments(line, "goto", 1)
-			if arg_error: 
-				response = arg_error
-			else:
-				var directory = current_dir.get(line[1])
-				if directory:
-					if line[1].begins_with("/"):
-						response = "opening directory..."
-						current_dir = directory
-					elif line[1] == "../":
-						response = "opening directory..."
-						var path = directory.split("/")
-						current_dir = dirs
-						for step in path:
-							current_dir = current_dir[step]
-					else:
-						response = "goto: " + line[1] + " is not a directory"
+					response = PoolStringArray(dirs['available_networks'].keys()).join("\n")
+			"connect":
+				var arg_error = check_arguments(line, "view", 1)
+				if arg_error: 
+					response = arg_error
 				else:
-					response = "goto: no such directory"
-		"hack":
-			var arg_error = check_arguments(line, "hack", 0)
-			if arg_error: 
-				response = arg_error
-			else:
-				response = "loading memory..."
-				$"../../Node2D".toggle_view()
-		_:
-			print(line.size())
-			if line[0] != "":
-				response = "command not found: " + line[0]
-			else:
-				response = ""
-	if response != "":
-		response = response.insert(0, "\n")
+					var network = dirs['available_networks'].get(line[1])
+					if network:
+						response = "connecting to network..."
+						online = true
+						current_dir = network
+					else:
+						response = "connect: network not found"
+			"disconnect":
+				if online:
+					var arg_error = check_arguments(line, "view", 0)
+					if arg_error: 
+						response = arg_error
+					else:
+						response = "disconnecting from network..."
+						online = false
+						current_dir = dirs['local_dir']
+				else:
+					response = "disconnect: you are not online"
+			"view":
+				var arg_error = check_arguments(line, "view", 1)
+				if arg_error: 
+					response = arg_error
+				else:
+					var file = current_dir.get(line[1])
+					if file:
+						if line[1].ends_with(".txt"):
+							response = file
+						else:
+							response = "view: not a file"
+					else:
+						response = "view: file not found"
+			"clear":
+				var arg_error = check_arguments(line, "clear", 0)
+				if arg_error: 
+					response = arg_error
+				else:
+					response = ""
+					text = ""
+			"goto":
+				var arg_error = check_arguments(line, "goto", 1)
+				if arg_error: 
+					response = arg_error
+				else:
+					var directory = current_dir.get(line[1])
+					if directory:
+						if line[1].begins_with("/"):
+							if directory.get('password'):
+								locked_dir = directory
+								start_blink_freeze()
+								text = text.replace("█", "")
+								text = text + "\npassword: █"
+							else:
+								response = "opening directory..."
+								current_dir = directory
+						elif line[1] == "../":
+							response = "opening directory..."
+							var path = directory.split("/")
+							current_dir = dirs
+							for step in path:
+								current_dir = current_dir[step]
+						else:
+							response = "goto: " + line[1] + " is not a directory"
+					else:
+						response = "goto: no such directory"
+			_:
+				if line[0] != "":
+					response = "command not found: " + line[0]
+				else:
+					response = ""
+	if not locked_dir:
+		if response != "":
+			response = response.insert(0, "\n")
+		response = response + "\n> "
 	return response
 
 func check_arguments(line, func_name, expected_args):
