@@ -4,6 +4,7 @@ var awake = true
 var regex_alphabetical = RegEx.new()
 var online = false
 var locked_dir = null
+var ttd = null
 
 var dirs = {
 	'local_dir': {
@@ -61,14 +62,16 @@ var character_input_map = {
 	'Shift+Slash': '?',
 }
 
-onready var timer = $CursorBlinkTimer
+onready var cursor_blink_timer = $CursorBlinkTimer
+onready var ttd_timer = $TTDTimer
 var cursor_on = false
 var blink_freeze = 0
 
 func _ready():
 	text = "\n> "
 	regex_alphabetical.compile("^[A-Za-z]")
-	timer.connect("timeout", self, "blink")
+	cursor_blink_timer.connect("timeout", self, "blink")
+	ttd_timer.connect("timeout", self, "countdown")
 
 func blink():
 	if blink_freeze > 0:
@@ -80,6 +83,11 @@ func blink():
 		else:
 			text = text + "█"
 		cursor_on = not cursor_on
+
+func countdown():
+	if ttd:
+		ttd -= 1
+		text = text.replace("\nconnected, time til disconect: " + str(ttd+1), "\nconnected, time til disconect: " + str(ttd))
 
 func _input(event):
 	if awake:
@@ -152,7 +160,10 @@ func get_response(line):
 				else:
 					var network = dirs['available_networks'].get(line[1])
 					if network:
-						response = "connecting to network..."
+						text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
+						ttd = 10
+						$TTDTimer.start()
+						response = "connecting to network...\nconnected, time til disconect: " + str(ttd)
 						online = true
 						current_dir = network
 					else:
