@@ -1,4 +1,4 @@
-extends Label
+extends RichTextLabel
 
 var awake = true
 var regex_alphabetical = RegEx.new()
