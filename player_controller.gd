@@ -3,8 +3,7 @@ extends Node2D
 onready var console = $"../Console/Label"
 var minimised = true
 
-var location = Vector2(1, 3)
-var direction = 0
+onready var grid = $Grid
 
 
 func _input(event):
@@ -14,17 +13,17 @@ func _input(event):
 		if Input.is_action_pressed('down'):
 			move(-1)
 		if Input.is_action_pressed('left'):
-			direction = (direction - 1) % 4	
+			grid.player_direction = (grid.player_direction - 1) % 4	
 		if Input.is_action_pressed('right'):
-			direction = (direction + 1) % 4
-		if direction < 0:
-			direction = 4 + direction
+			grid.player_direction = (grid.player_direction + 1) % 4
+		if grid.player_direction < 0:
+			grid.player_direction = 4 + grid.player_direction
 		if Input.is_action_pressed("escape"):
 			toggle_view()
 
 func move(amount):
-	var loc_temp = Vector2(location.x, location.y)
-	match direction:
+	var loc_temp = Vector2(grid.player_loc.x, grid.player_loc.y)
+	match grid.player_direction:
 		0:
 			loc_temp.y -= amount
 		1:
@@ -34,7 +33,7 @@ func move(amount):
 		3:
 			loc_temp.x -= amount
 	if $Grid.is_empty(loc_temp):
-		location = loc_temp
+		grid.player_loc = loc_temp
 
 func toggle_view():
 	if minimised:

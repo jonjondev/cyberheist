@@ -6,13 +6,12 @@
 [ext_resource path="res://Menlo-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://minimap.gd" type="Script" id=5]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 60
 extra_spacing_bottom = -38
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 39
 font_data = ExtResource( 4 )
 
@@ -98,7 +97,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "esc to disconnect"
 align = 1
 valign = 2

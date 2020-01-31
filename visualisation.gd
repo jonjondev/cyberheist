@@ -20,8 +20,8 @@ onready var rights = [
 ]
 
 func _physics_process(delta):
-	var player_location = get_parent().location
-	var player_direction = get_parent().direction
+	var player_location = $"../Grid".player_loc
+	var player_direction = $"../Grid".player_direction
 	var map = $"../Grid".wall_map
 	
 	$Wall.visible = false
