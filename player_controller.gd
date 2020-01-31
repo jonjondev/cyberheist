@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var console = $"../Console/Label"
-
 var minimised = true
 
 var location = Vector2(1, 3)
