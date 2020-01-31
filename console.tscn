@@ -11,6 +11,9 @@ font_data = ExtResource( 1 )
 margin_right = 1026.0
 margin_bottom = 766.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 37.0
@@ -24,6 +27,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Label"]
+[node name="CursorBlinkTimer" type="Timer" parent="Label"]
 wait_time = 0.65
 autostart = true

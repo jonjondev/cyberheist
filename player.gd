@@ -1,19 +1,27 @@
 extends Node2D
 
+onready var console = $"../Console/Label"
+
+var minimised = true
+
 var location = Vector2(1, 3)
 var direction = 0
 
+
 func _input(event):
-	if Input.is_action_pressed('up'):
-		move(+1)
-	if Input.is_action_pressed('down'):
-		move(-1)
-	if Input.is_action_pressed('left'):
-		direction = (direction - 1) % 4	
-	if Input.is_action_pressed('right'):
-		direction = (direction + 1) % 4
-	if direction < 0:
-		direction = 4 + direction
+	if not minimised:
+		if Input.is_action_pressed('up'):
+			move(+1)
+		if Input.is_action_pressed('down'):
+			move(-1)
+		if Input.is_action_pressed('left'):
+			direction = (direction - 1) % 4	
+		if Input.is_action_pressed('right'):
+			direction = (direction + 1) % 4
+		if direction < 0:
+			direction = 4 + direction
+		if Input.is_action_pressed("escape"):
+			toggle_view()
 
 func move(amount):
 	var loc_temp = Vector2(location.x, location.y)
@@ -28,3 +36,12 @@ func move(amount):
 			loc_temp.x -= amount
 	if $Grid.is_empty(loc_temp):
 		location = loc_temp
+
+func toggle_view():
+	if minimised:
+		$AnimationPlayer.play("maximise")
+		console.awake = false
+	else:
+		$AnimationPlayer.play("minimise")
+		console.awake = true
+	minimised = not minimised
