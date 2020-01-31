@@ -214,6 +214,20 @@ func get_response(line):
 							response = "goto: " + line[1] + " is not a directory"
 					else:
 						response = "goto: no such directory"
+			"simulate":
+				var arg_error = check_arguments(line, "simulate", 1)
+				if arg_error: 
+					response = arg_error
+				else:
+					var memory = current_dir.get(line[1])
+					if memory:
+						if line[1].begins_with("@"):
+							response = "loading memory..."
+							$"../../Node2D".toggle_view()
+						else:
+							response = "simulate: not a memory fragment"
+					else:
+						response = "simulate: memory fragment not found"
 			_:
 				if line[0] != "":
 					response = "command not found: " + line[0]
