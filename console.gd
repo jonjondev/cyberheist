@@ -2,13 +2,19 @@ extends Label
 
 var awake = true
 var regex_alphabetical = RegEx.new()
-var current_dir = {
-	'welcome.txt': "Welcome to CyberHeist!",
-	'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
-	'/secrets': {
-		'secret.txt': "This was a decoy, you dumbfuck!",
-	},
+
+var dirs = {
+	'local_dir': {
+		'welcome.txt': "Welcome to CyberHeist!",
+		'fuckoff.txt': "Give your balls a tug, you tit-fucker!",
+		'/secrets': {
+			'../': 'local_dir',
+			'secret.txt': "This was a decoy, you dumbfuck!",
+		},
+	}
 }
+
+var current_dir = dirs['local_dir']
 
 var available_networks = {
 	'pentagon': '???'
@@ -140,6 +146,23 @@ func get_response(line):
 			else:
 				response = ""
 				text = ""
+		"goto":
+			var arg_error = check_arguments(line, "goto", 1)
+			if arg_error: 
+				response = arg_error
+			else:
+				var directory = current_dir.get(line[1])
+				if directory:
+					if line[1].begins_with("/"):
+						response = "opening directory..."
+						current_dir = directory
+					elif line[1] == "../":
+						response = "opening directory..."
+						current_dir = dirs[directory]
+					else:
+						response = "goto: " + line[1] + " is not a directory"
+				else:
+					response = "goto: no such directory"
 		"hack":
 			var arg_error = check_arguments(line, "hack", 0)
 			if arg_error: 
