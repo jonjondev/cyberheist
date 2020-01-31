@@ -88,6 +88,14 @@ func countdown():
 	if ttd:
 		ttd -= 1
 		text = text.replace("\nconnected, time til disconect: " + str(ttd+1), "\nconnected, time til disconect: " + str(ttd))
+		if ttd <= 0:
+			print("reach")
+			$TTDTimer.stop()
+			text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
+			start_blink_freeze()
+			text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
+			online = false
+			current_dir = dirs['local_dir']
 
 func _input(event):
 	if awake:
