@@ -115,17 +115,17 @@ func get_response(line):
 		"help":
 			response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - clear: clears the contents of the terminal output, takes 0 args\n---------------------------"
 		"list":
-			var arg_error = check_arguments(line, "list", 1)
+			var arg_error = check_arguments(line, "list", 0)
 			if arg_error: 
 				response = arg_error
 			else:
-				match line[1]:
-					"files":
-						response = PoolStringArray(current_dir.keys()).join("\n")
-					"networks":
-						response = PoolStringArray(available_networks.keys()).join("\n")
-					_:
-						response = "list: unknown list source"
+				response = PoolStringArray(current_dir.keys()).join("\n")
+		"networks":
+			var arg_error = check_arguments(line, "list", 0)
+			if arg_error: 
+				response = arg_error
+			else:
+				response = PoolStringArray(available_networks.keys()).join("\n")
 		"view":
 			var arg_error = check_arguments(line, "view", 1)
 			if arg_error: 
