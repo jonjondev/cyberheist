@@ -88,10 +88,10 @@ func blink():
 func countdown():
 	if ttd:
 		ttd -= 1
-		text = text.replace("\nconnected, time til disconect: " + str(ttd+1), "\nconnected, time til disconect: " + str(ttd))
+		text = text.replace("\nconnected, time til disconect: " + str(ttd+1) + "s", "\nconnected, time til disconect: " + str(ttd) + "s")
 		if ttd <= 0:
 			$TTDTimer.stop()
-			text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
+			text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 			start_blink_freeze()
 			text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
 			online = false
@@ -169,10 +169,10 @@ func get_response(line):
 				else:
 					var network = dirs['available_networks'].get(line[1])
 					if network:
-						text = text.replace("\nconnected, time til disconect: " + str(ttd), "\nconnected, time til disconect: -")
+						text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 						ttd = network['ttd']
 						$TTDTimer.start()
-						response = "connecting to network...\nconnected, time til disconect: " + str(ttd)
+						response = "connecting to network...\nconnected, time til disconect: " + str(ttd) + "s"
 						online = true
 						current_dir = network
 					else:
