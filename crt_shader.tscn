@@ -161,8 +161,8 @@ else{
 
 float pixel_size_x = 1.0/screen_width*bleeding_range_x;
 float pixel_size_y = 1.0/screen_height*bleeding_range_y;
-vec4 color_left = texture(SCREEN_TEXTURE,SCREEN_UV - vec2(pixel_size_x, pixel_size_y));
-vec4 current_color = texture(SCREEN_TEXTURE,SCREEN_UV);
+vec4 color_left = texture(SCREEN_TEXTURE,xy - vec2(pixel_size_x, pixel_size_y));
+vec4 current_color = texture(SCREEN_TEXTURE,xy);
 get_color_bleeding(current_color,color_left);
 vec4 c = current_color+color_left;
 get_color_scanline(xy,c,TIME);
@@ -175,7 +175,7 @@ COLOR = c;
 shader = SubResource( 7 )
 shader_param/screen_width = 1024.0
 shader_param/screen_height = 768.0
-shader_param/BarrelPower = 1.5
+shader_param/BarrelPower = 1.04
 shader_param/color_bleeding = 1.2
 shader_param/bleeding_range_x = 2.0
 shader_param/bleeding_range_y = 2.0
