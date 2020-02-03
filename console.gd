@@ -18,7 +18,7 @@ var dirs = {
 			'dontopen.txt': "Give your balls a tug, you tit-fucker!",
 			'/secrets': {
 				'../': 'available_networks/pentagon',
-				'password': '123',
+				'password': 'metadragon4',
 				'secret.txt': "This was a decoy, you dumby!",
 			},
 			'@1475': {
@@ -36,6 +36,10 @@ var dirs = {
 							[" ", " ", " ", " "],
 							[" ", " ", " ", " "],
 							[" ", " ", " ", " "],],
+				'secrets': {
+					Vector2(2, 1): 'metadragon4',
+					Vector2(1, 3): '123',
+				},
 			},
 		},
 	}

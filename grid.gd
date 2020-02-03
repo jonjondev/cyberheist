@@ -2,6 +2,7 @@ extends Node2D
 
 var player_loc = null
 var player_direction = null
+var secrets = null
 
 var wall_map = null
 
@@ -15,3 +16,4 @@ func set_simulation(memory):
 	entity_map = memory['entity_map']
 	player_loc = memory['player_loc']
 	player_direction = memory['player_dir']
+	secrets = memory['secrets']

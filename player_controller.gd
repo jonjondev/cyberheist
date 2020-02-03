@@ -17,6 +17,7 @@ func _input(event):
 		if grid.player_direction < 0:
 			grid.player_direction = 4 + grid.player_direction
 	if Input.is_action_pressed("escape"):
+		console.in_sim = false
 		toggle_view()
 
 func move(amount):

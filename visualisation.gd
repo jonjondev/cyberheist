@@ -22,6 +22,7 @@ onready var rights = [
 func _physics_process(delta):
 	var player_location = $"../Grid".player_loc
 	var player_direction = $"../Grid".player_direction
+	var secrets = $"../Grid".secrets
 	var map = $"../Grid".wall_map
 	
 	if map:
@@ -43,6 +44,12 @@ func _physics_process(delta):
 						$Right.visible = true
 						break
 				break
+		var alert = $"../Minimap/Alert"
+		alert.visible = false
+		for location in secrets.keys():
+			if location == player_location:
+				alert.text = "memory found:\n" + secrets[location]
+				alert.visible = true
 
 
 func get_tile(map, location, direction, distance, offset):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player_controller.gd" type="Script" id=1]
 [ext_resource path="res://visualisation.tscn" type="PackedScene" id=2]
@@ -13,6 +13,12 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 39
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+outline_size = 1
+outline_color = Color( 0.713726, 0.164706, 0.776471, 1 )
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=3]
@@ -101,6 +107,32 @@ custom_fonts/font = SubResource( 2 )
 text = "esc to disconnect"
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alert" type="Label" parent="Minimap"]
+visible = false
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TTD" type="Label" parent="Minimap"]
+anchor_left = -0.000906356
+anchor_right = 0.999094
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
