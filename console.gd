@@ -5,6 +5,7 @@ var regex_alphabetical = RegEx.new()
 var online = false
 var locked_dir = null
 var ttd = null
+var in_sim = false
 
 var dirs = {
 	'local_dir': {
@@ -106,6 +107,8 @@ func countdown():
 		text = text.replace("\nconnected, time til disconect: " + str(ttd+1) + "s", "\nconnected, time til disconect: " + str(ttd) + "s")
 		if ttd <= 0:
 			$TTDTimer.stop()
+			if in_sim:
+				$"../../Node2D".toggle_view()
 			text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 			start_blink_freeze()
 			text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
@@ -258,6 +261,7 @@ func get_response(line):
 					if memory:
 						if line[1].begins_with("@"):
 							response = "loading memory..."
+							in_sim = true
 							$"../../Node2D/Grid".set_simulation(memory)
 							$"../../Node2D".toggle_view()
 						else:
