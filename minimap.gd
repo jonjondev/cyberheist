@@ -6,26 +6,26 @@ var direction_chars = ["▲", "►", "▼", "◄"]
 
 func _physics_process(delta):
 	if grid.wall_map:
-		var temp_map = [["", "", "", "", ""],
-						["", "", "", "", ""],
-						["", "", "", "", ""],
-						["", "", "", "", ""],
-						["", "", "", "", ""]]
+		var temp_map = grid.wall_map.duplicate(true)
 		
-		var display_y = grid.player_loc.y - 2
-		for i in range(5):
-			display_y += 1
-			var display_x = grid.player_loc.x - 2
-			for j in range(5):
-				display_x += 1
-				if display_x > 0 and display_y > 0 and display_x < grid.wall_map[0].size() and display_y < grid.wall_map.size():
-					if grid.wall_map[display_y - 1][display_x - 1] == "■":
-						temp_map[i][j] = grid.wall_map[display_y - 1][display_x - 1]
-					else:
-						temp_map[i][j] = grid.entity_map[display_y - 1][display_x - 1]
+		temp_map = [[" ", " ", " ", " ", " "],
+					[" ", " ", " ", " ", " "],
+					[" ", " ", " ", " ", " "],
+					[" ", " ", " ", " ", " "],
+					[" ", " ", " ", " ", " "],]
+		var y_offset = -2
+		for i in range(temp_map.size()):
+			var x_offset = -2
+			for j in range(temp_map[i].size()):
+				var y_index = grid.player_loc.y+y_offset
+				var x_index = grid.player_loc.x+x_offset
+				if  y_index < grid.wall_map.size() and y_index >= 0 and x_index < grid.wall_map[y_index].size() and x_index >= 0:
+					temp_map[i][j] = grid.wall_map[y_index][x_index]
 				else:
 					temp_map[i][j] = "■"
-			
+				x_offset += 1
+			y_offset += 1
+		
 		temp_map[2][2] = direction_chars[grid.player_direction]
 		
 		var rows = []
