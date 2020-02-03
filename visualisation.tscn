@@ -1,27 +1,93 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://visualisation.gd" type="Script" id=1]
-[ext_resource path="res://res/ground.png" type="Texture" id=2]
-[ext_resource path="res://res/wall_far.png" type="Texture" id=3]
-[ext_resource path="res://res/right_far.png" type="Texture" id=4]
-[ext_resource path="res://res/left_far.png" type="Texture" id=5]
+[ext_resource path="res://res/visualisation/base.png" type="Texture" id=2]
+[ext_resource path="res://res/visualisation/l1.png" type="Texture" id=3]
+[ext_resource path="res://res/visualisation/l2.png" type="Texture" id=4]
+[ext_resource path="res://res/visualisation/f5.png" type="Texture" id=5]
+[ext_resource path="res://res/visualisation/r2.png" type="Texture" id=6]
+[ext_resource path="res://res/visualisation/f4.png" type="Texture" id=7]
+[ext_resource path="res://res/visualisation/l3.png" type="Texture" id=8]
+[ext_resource path="res://res/visualisation/r4.png" type="Texture" id=9]
+[ext_resource path="res://res/visualisation/r5.png" type="Texture" id=10]
+[ext_resource path="res://res/visualisation/r1.png" type="Texture" id=11]
+[ext_resource path="res://res/visualisation/l5.png" type="Texture" id=12]
+[ext_resource path="res://res/visualisation/l4.png" type="Texture" id=13]
+[ext_resource path="res://res/visualisation/r3.png" type="Texture" id=14]
+[ext_resource path="res://res/visualisation/f1.png" type="Texture" id=15]
+[ext_resource path="res://res/visualisation/f6.png" type="Texture" id=16]
+[ext_resource path="res://res/visualisation/f3.png" type="Texture" id=17]
+[ext_resource path="res://res/visualisation/f2.png" type="Texture" id=18]
+[ext_resource path="res://res/visualisation/r0.png" type="Texture" id=19]
+[ext_resource path="res://res/visualisation/l0.png" type="Texture" id=20]
 
 [node name="Visualisation" type="Node2D"]
-editor/display_folded = true
 position = Vector2( 1024.16, 768.062 )
 script = ExtResource( 1 )
 
-[node name="Ground" type="Sprite" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -1024.0
+margin_top = -770.0
+margin_right = 1024.0
+margin_bottom = 770.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="f6" type="Sprite" parent="."]
+texture = ExtResource( 16 )
+
+[node name="base" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="Wall" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 3 )
+[node name="r5" type="Sprite" parent="."]
+texture = ExtResource( 10 )
 
-[node name="Right" type="Sprite" parent="."]
-visible = false
+[node name="l5" type="Sprite" parent="."]
+texture = ExtResource( 12 )
+
+[node name="f5" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="l4" type="Sprite" parent="."]
+texture = ExtResource( 13 )
+
+[node name="r4" type="Sprite" parent="."]
+texture = ExtResource( 9 )
+
+[node name="f4" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+
+[node name="l3" type="Sprite" parent="."]
+texture = ExtResource( 8 )
+
+[node name="r3" type="Sprite" parent="."]
+texture = ExtResource( 14 )
+
+[node name="f3" type="Sprite" parent="."]
+texture = ExtResource( 17 )
+
+[node name="l2" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 
-[node name="Left" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 5 )
+[node name="r2" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="f2" type="Sprite" parent="."]
+texture = ExtResource( 18 )
+
+[node name="l1" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="r1" type="Sprite" parent="."]
+texture = ExtResource( 11 )
+
+[node name="f1" type="Sprite" parent="."]
+texture = ExtResource( 15 )
+
+[node name="l0" type="Sprite" parent="."]
+texture = ExtResource( 20 )
+
+[node name="r0" type="Sprite" parent="."]
+texture = ExtResource( 19 )
