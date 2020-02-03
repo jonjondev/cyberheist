@@ -50,6 +50,7 @@ func _physics_process(delta):
 			if location == player_location:
 				alert.text = "memory found:\n" + secrets[location]
 				alert.visible = true
+		$"../Minimap/TTD".text = "disconnect in: " + str($"../../Console/RichTextLabel".ttd)
 
 
 func get_tile(map, location, direction, distance, offset):
