@@ -4,7 +4,7 @@ onready var walls = [
 	preload("res://res/wall_near.png"),
 	preload("res://res/wall_middle.png"),
 	preload("res://res/wall_far.png"),
-	#preload("res://res/wall_very_far.png")
+	preload("res://res/wall_very_far.png")
 ]
 
 onready var lefts = [
@@ -25,7 +25,7 @@ func _physics_process(delta):
 	var secrets = $"../Grid".secrets
 	var map = $"../Grid".wall_map
 	
-	if map:
+	if false:
 		$Wall.visible = false
 		$Left.visible = false
 		$Right.visible = false
@@ -51,15 +51,48 @@ func _physics_process(delta):
 				alert.text = "memory found:\n" + secrets[location]
 				alert.visible = true
 		$"../Minimap/TTD".text = "disconnect in: " + str($"../../Console/RichTextLabel".ttd)
+	
+	for child in get_children():
+		child.visible = false
+	
+	if map:
+		for i in range(6):
+			var l_tile = get_tile(map, player_location, player_direction, i, 1)
+			var f_tile = get_tile(map, player_location, player_direction, i, 0)
+			var r_tile = get_tile(map, player_location, player_direction, i, -1)
+			if l_tile == "■":
+				get_node("l" + str(i)).visible = true
+			if f_tile == "■":
+				get_node("f" + str(i)).visible = true
+			if r_tile == "■":
+				get_node("r" + str(i)).visible = true
+		
+		var f6 = get_tile(map, player_location, player_direction, 6, 0)
+		if f6 == "■":
+				$f6.visible = true
+		$base.visible = true
+		$ColorRect.visible = true
 
 
 func get_tile(map, location, direction, distance, offset):
+	var y_val
+	var x_val
 	match direction:
 		0:
-			return map[location.y - distance][location.x -offset]
+			y_val = -distance
+			x_val = -offset
 		1:
-			return map[location.y -offset][location.x + distance]
+			y_val = -offset
+			x_val = distance
 		2:
-			return map[location.y + distance][location.x + offset]
+			y_val = distance
+			x_val = offset
 		3:
-			return map[location.y + offset][location.x - distance]
+			y_val = offset
+			x_val = -distance
+	
+	var final_y = location.y + y_val
+	var final_x = location.x + x_val
+	
+	if final_y < map.size() and final_y >= 0 and final_x < map[0].size() and final_x >= 0:
+		return map[final_y][final_x]
