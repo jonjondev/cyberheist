@@ -20,7 +20,22 @@ var dirs = {
 				'password': '123',
 				'secret.txt': "This was a decoy, you dumby!",
 			},
-			'@1475': 'null',
+			'@1475': {
+				'player_loc': Vector2(1, 3),
+				'player_dir': 0,
+				'wall_map': [
+							["■", "■", "■", "■"],
+							["■", " ", " ", "■"],
+							["■", " ", "■", "■"],
+							["■", " ", "■", "■"],
+							["■", "■", "■", "■"],],
+				'entity_map': [
+							[" ", " ", " ", " "],
+							[" ", "x", " ", " "],
+							[" ", " ", " ", " "],
+							[" ", " ", " ", " "],
+							[" ", " ", " ", " "],],
+			},
 		},
 	}
 }
@@ -243,6 +258,7 @@ func get_response(line):
 					if memory:
 						if line[1].begins_with("@"):
 							response = "loading memory..."
+							$"../../Node2D/Grid".set_simulation(memory)
 							$"../../Node2D".toggle_view()
 						else:
 							response = "simulate: not a memory fragment"

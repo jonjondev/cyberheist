@@ -5,7 +5,7 @@ var minimised = true
 onready var grid = $Grid
 
 func _input(event):
-	if not minimised:
+	if not minimised and grid.wall_map:
 		if Input.is_action_pressed('up'):
 			move(+1)
 		if Input.is_action_pressed('down'):
@@ -16,8 +16,8 @@ func _input(event):
 			grid.player_direction = (grid.player_direction + 1) % 4
 		if grid.player_direction < 0:
 			grid.player_direction = 4 + grid.player_direction
-		if Input.is_action_pressed("escape"):
-			toggle_view()
+	if Input.is_action_pressed("escape"):
+		toggle_view()
 
 func move(amount):
 	var loc_temp = Vector2(grid.player_loc.x, grid.player_loc.y)
