@@ -259,6 +259,20 @@ func get_response(line):
 							response = "view: not a file"
 					else:
 						response = "view: file not found"
+			"copy":
+				var arg_error = check_arguments(line, "copy", 1)
+				if arg_error: 
+					response = arg_error
+				else:
+					var file = current_dir.get(line[1])
+					if file:
+						if line[1].ends_with(".txt"):
+							dirs['local_dir'][line[1]] = file
+							response = "file coppied to local system"
+						else:
+							response = "copy: not a file"
+					else:
+						response = "copy: file not found"
 			"clear":
 				var arg_error = check_arguments(line, "clear", 0)
 				if arg_error: 
