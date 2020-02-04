@@ -1,6 +1,6 @@
 extends RichTextLabel
 
-var awake = true
+var awake = false
 var regex_alphabetical = RegEx.new()
 var online = false
 var locked_dir = null
@@ -102,12 +102,31 @@ onready var cursor_blink_timer = $CursorBlinkTimer
 onready var ttd_timer = $TTDTimer
 var cursor_on = false
 var blink_freeze = 0
+var start_times = 0
 
 func _ready():
-	text = "\n> "
 	regex_alphabetical.compile("^[A-Za-z]")
-	cursor_blink_timer.connect("timeout", self, "blink")
-	ttd_timer.connect("timeout", self, "countdown")
+	$StartDelay.connect("timeout", self, "on_system_start")
+
+func on_system_start():
+	if start_times == 0:
+		text = "\nStarting system..."
+		$"../../Start".play()
+	elif start_times == 1:
+		text = text + "\nInitialising system commands..."
+	elif start_times == 2:
+		text = text + "\n\nCopyright (C) 1997 Whitehat Systems\nPlatform: x12_42-pc-gridripper-pro (56kb)\n"
+	elif start_times == 4:
+		var time = str(OS.get_time().hour) + ":" + str(OS.get_time().minute) + ":" + str(OS.get_time().second)
+		text = text + "\nSystem started successfully at " + time
+		text = text + '\nType "help" for a list of avalable commands'
+	elif start_times == 6:
+		text = text + "\n> "
+		cursor_blink_timer.connect("timeout", self, "blink")
+		ttd_timer.connect("timeout", self, "countdown")
+		awake = true
+		$StartDelay.stop()
+	start_times += 1
 
 func blink():
 	if blink_freeze > 0:
@@ -206,6 +225,9 @@ func get_response(line):
 				else:
 					var network = dirs['available_networks'].get(line[1])
 					if network:
+						if not $"../../Music".playing:
+							$"../../Running".stop()
+							$"../../Music".play()
 						text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 						ttd = network['ttd']
 						$TTDTimer.start()

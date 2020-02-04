@@ -32,3 +32,6 @@ wait_time = 0.65
 autostart = true
 
 [node name="TTDTimer" type="Timer" parent="RichTextLabel"]
+
+[node name="StartDelay" type="Timer" parent="RichTextLabel"]
+autostart = true
