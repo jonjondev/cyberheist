@@ -225,9 +225,6 @@ func get_response(line):
 				else:
 					var network = dirs['available_networks'].get(line[1])
 					if network:
-						if not $"../../Music".playing:
-							$"../../Running".stop()
-							$"../../Music".play()
 						text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 						ttd = network['ttd']
 						$TTDTimer.start()
@@ -244,6 +241,8 @@ func get_response(line):
 					else:
 						response = "disconnecting from network..."
 						online = false
+						text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
+						ttd = null
 						current_dir = dirs['local_dir']
 				else:
 					response = "disconnect: you are not online"
