@@ -143,7 +143,7 @@ tracks/10/keys = {
 "values": [ true ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("AnimationPlayer/Side:visible")
+tracks/11/path = NodePath("Side:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -155,7 +155,7 @@ tracks/11/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 resource_name = "walk_backward"
 length = 2.0
 loop = true
@@ -292,7 +292,7 @@ tracks/10/keys = {
 "values": [ true ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("AnimationPlayer/Side:visible")
+tracks/11/path = NodePath("Side:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -440,7 +440,7 @@ tracks/10/keys = {
 "values": [ true ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("AnimationPlayer/Side:visible")
+tracks/11/path = NodePath("Side:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -469,7 +469,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimationPlayer/Side:visible")
+tracks/1/path = NodePath("Side:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -481,7 +481,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AnimationPlayer/Side/head_side:position")
+tracks/2/path = NodePath("Side/head_side:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -493,7 +493,7 @@ tracks/2/keys = {
 "values": [ Vector2( -0.5, 0 ), Vector2( -0.5, 2 ), Vector2( -0.5, 0 ), Vector2( -0.5, 2 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AnimationPlayer/Side/body_side:position")
+tracks/3/path = NodePath("Side/body_side:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -505,7 +505,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 31.252 ), Vector2( 0, 31.252 ), Vector2( 0, 31.252 ), Vector2( 0, 31.252 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AnimationPlayer/Side/foot3:position")
+tracks/4/path = NodePath("Side/foot3:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -517,7 +517,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 47 ), Vector2( -3, 45 ), Vector2( 0, 47 ), Vector2( 0, 47 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AnimationPlayer/Side/arm3:position")
+tracks/5/path = NodePath("Side/arm3:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -529,7 +529,7 @@ tracks/5/keys = {
 "values": [ Vector2( -4, 20 ), Vector2( -4, 18 ), Vector2( -4, 20 ), Vector2( -4, 22 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("AnimationPlayer/Side/foot4:position")
+tracks/6/path = NodePath("Side/foot4:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -541,7 +541,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0, 47 ), Vector2( -3, 45 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("AnimationPlayer/Side/head_side:flip_h")
+tracks/7/path = NodePath("Side/head_side:flip_h")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -570,7 +570,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimationPlayer/Side:visible")
+tracks/1/path = NodePath("Side:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -582,7 +582,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AnimationPlayer/Side/head_side:position")
+tracks/2/path = NodePath("Side/head_side:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -594,7 +594,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.5, 0 ), Vector2( 0.5, 2 ), Vector2( 0.5, 0 ), Vector2( 0.5, 2 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("AnimationPlayer/Side/body_side:position")
+tracks/3/path = NodePath("Side/body_side:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -606,7 +606,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 31.252 ), Vector2( 0, 31.252 ), Vector2( 0, 31.252 ), Vector2( 0, 31.252 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("AnimationPlayer/Side/foot3:position")
+tracks/4/path = NodePath("Side/foot3:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -618,7 +618,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 47 ), Vector2( 3, 45 ), Vector2( 0, 47 ), Vector2( 0, 47 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AnimationPlayer/Side/arm3:position")
+tracks/5/path = NodePath("Side/arm3:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -630,7 +630,7 @@ tracks/5/keys = {
 "values": [ Vector2( 4, 20 ), Vector2( 4, 18 ), Vector2( 4, 20 ), Vector2( 4, 22 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("AnimationPlayer/Side/foot4:position")
+tracks/6/path = NodePath("Side/foot4:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -642,7 +642,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0, 47 ), Vector2( 3, 45 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("AnimationPlayer/Side/head_side:flip_h")
+tracks/7/path = NodePath("Side/head_side:flip_h")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -658,34 +658,35 @@ tracks/7/keys = {
 position = Vector2( 0, -5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "rest"
 anims/rest = SubResource( 1 )
-anims/walk_backward = SubResource( 2 )
+anims/walk_backward = SubResource( 6 )
 anims/walk_forward = SubResource( 3 )
 anims/walk_left = SubResource( 4 )
 anims/walk_right = SubResource( 5 )
 
-[node name="Side" type="Node2D" parent="AnimationPlayer"]
+[node name="Side" type="Node2D" parent="."]
 visible = false
+position = Vector2( 0, 5 )
 
-[node name="foot4" type="Sprite" parent="AnimationPlayer/Side"]
+[node name="foot4" type="Sprite" parent="Side"]
 position = Vector2( 0, 47 )
 texture = ExtResource( 5 )
 
-[node name="foot3" type="Sprite" parent="AnimationPlayer/Side"]
-position = Vector2( 0, 47 )
+[node name="foot3" type="Sprite" parent="Side"]
+position = Vector2( -3, 45 )
 texture = ExtResource( 5 )
 
-[node name="body_side" type="Sprite" parent="AnimationPlayer/Side"]
+[node name="body_side" type="Sprite" parent="Side"]
 position = Vector2( 0, 31.252 )
 texture = ExtResource( 7 )
 
-[node name="head_side" type="Sprite" parent="AnimationPlayer/Side"]
-position = Vector2( 0.5, 0 )
+[node name="head_side" type="Sprite" parent="Side"]
+position = Vector2( -0.5, 2 )
 texture = ExtResource( 6 )
-flip_h = true
 
-[node name="arm3" type="Sprite" parent="AnimationPlayer/Side"]
-position = Vector2( 4, 20 )
+[node name="arm3" type="Sprite" parent="Side"]
+position = Vector2( -4, 18 )
 texture = ExtResource( 2 )
 
 [node name="Front" type="Node2D" parent="."]

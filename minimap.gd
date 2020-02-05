@@ -9,7 +9,7 @@ func _physics_process(delta):
 		var merge_map = grid.wall_map.duplicate(true)
 		
 		for location in grid.entities.keys():
-			merge_map[location.y][location.x] = grid.entities[location]
+			merge_map[location.y][location.x] = "x"
 		
 		var temp_map = [[" ", " ", " ", " ", " "],
 						[" ", " ", " ", " ", " "],

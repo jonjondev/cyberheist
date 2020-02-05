@@ -41,6 +41,7 @@ func _physics_process(delta):
 				$Data.position.y = relative_data_pos[i]
 				$Data.visible = true
 			elif f_tile == "x" and i > 0 and not $Antivirus.visible and not wall_infront:
+				run_entity_animation(player_direction, 0)
 				$Antivirus.z_index = 6-i
 				$Antivirus.scale = Vector2(6-i, 6-i)
 				$Antivirus.position.y = relative_entity_pos[i]
@@ -52,6 +53,21 @@ func _physics_process(delta):
 		$ColorRect.visible = true
 		
 		$"../Minimap/TTD".text = "disconnect in: " + str($"../../Console/RichTextLabel".ttd)
+
+func run_entity_animation(player_direction, entity_direction):
+	var new_animation = null
+	match int(abs(player_direction - entity_direction)):
+		0:
+			new_animation = "walk_backward"
+		1:
+			new_animation = "walk_right"
+		2:
+			new_animation = "walk_forward"
+		3:
+			new_animation = "walk_left"
+	if $Antivirus/AnimationPlayer.current_animation != new_animation:
+		$Antivirus/AnimationPlayer.play(new_animation)
+	print($Antivirus/AnimationPlayer.current_animation)
 
 
 func get_tile(map, location, direction, distance, offset):
