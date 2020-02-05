@@ -1,6 +1,7 @@
 extends Node2D
 
 var relative_entity_pos = [null, 375, 200, 100, 50, 25, 0]
+var relative_data_pos = [null, 400, 300, 175, 125, 100, 0]
 
 func _physics_process(delta):
 	var player_location = $"../Grid".player_loc
@@ -24,6 +25,7 @@ func _physics_process(delta):
 		for child in get_children():
 			child.visible = false
 		
+		var wall_infront = false
 		for i in range(7):
 			var l_tile = get_tile(map, player_location, player_direction, i, 1)
 			var f_tile = get_tile(map, player_location, player_direction, i, 0)
@@ -31,13 +33,14 @@ func _physics_process(delta):
 			if l_tile == "■":
 				get_node("l" + str(i)).visible = true
 			if f_tile == "■":
+				wall_infront = true
 				get_node("f" + str(i)).visible = true
-			elif f_tile == "*" and i > 0 and not $Data.visible:
+			elif f_tile == "*" and i > 0 and not $Data.visible and not wall_infront:
 				$Data.z_index = 6-i
 				$Data.scale = Vector2(5-i, 5-i)
-				$Data.position.y = relative_entity_pos[i]
+				$Data.position.y = relative_data_pos[i]
 				$Data.visible = true
-			elif f_tile == "x" and i > 0 and not $Antivirus.visible:
+			elif f_tile == "x" and i > 0 and not $Antivirus.visible and not wall_infront:
 				$Antivirus.z_index = 6-i
 				$Antivirus.scale = Vector2(6-i, 6-i)
 				$Antivirus.position.y = relative_entity_pos[i]
