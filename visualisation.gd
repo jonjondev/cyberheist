@@ -41,7 +41,8 @@ func _physics_process(delta):
 				$Data.position.y = relative_data_pos[i]
 				$Data.visible = true
 			elif f_tile == "x" and i > 0 and not $Antivirus.visible and not wall_infront:
-				run_entity_animation(player_direction, 0)
+				var entity_loc = get_location(player_location, player_direction, i, 0)
+				run_entity_animation(player_direction, entities[entity_loc])
 				$Antivirus.z_index = 6-i
 				$Antivirus.scale = Vector2(6-i, 6-i)
 				$Antivirus.position.y = relative_entity_pos[i]
@@ -69,8 +70,7 @@ func run_entity_animation(player_direction, entity_direction):
 		$Antivirus/AnimationPlayer.play(new_animation)
 	print($Antivirus/AnimationPlayer.current_animation)
 
-
-func get_tile(map, location, direction, distance, offset):
+func get_location(location, direction, distance, offset):
 	var y_val
 	var x_val
 	match direction:
@@ -86,9 +86,9 @@ func get_tile(map, location, direction, distance, offset):
 		3:
 			y_val = offset
 			x_val = -distance
-	
-	var final_y = location.y + y_val
-	var final_x = location.x + x_val
-	
-	if final_y < map.size() and final_y >= 0 and final_x < map[0].size() and final_x >= 0:
-		return map[final_y][final_x]
+	return Vector2(location.x + x_val, location.y + y_val)
+
+func get_tile(map, location, direction, distance, offset):
+	var final_loc = get_location(location, direction, distance, offset)
+	if final_loc.y < map.size() and final_loc.y >= 0 and final_loc.x < map[0].size() and final_loc.x >= 0:
+		return map[final_loc.y][final_loc.x]
