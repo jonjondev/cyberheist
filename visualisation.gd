@@ -24,7 +24,7 @@ func _physics_process(delta):
 		for child in get_children():
 			child.visible = false
 		
-		for i in range(6):
+		for i in range(7):
 			var l_tile = get_tile(map, player_location, player_direction, i, 1)
 			var f_tile = get_tile(map, player_location, player_direction, i, 0)
 			var r_tile = get_tile(map, player_location, player_direction, i, -1)
@@ -45,9 +45,6 @@ func _physics_process(delta):
 			if r_tile == "■":
 				get_node("r" + str(i)).visible = true
 		
-		var f6 = get_tile(map, player_location, player_direction, 6, 0)
-		if f6 == "■":
-				$f6.visible = true
 		$base.visible = true
 		$ColorRect.visible = true
 		
