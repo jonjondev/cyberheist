@@ -93,6 +93,6 @@ texture = ExtResource( 20 )
 [node name="r0" type="Sprite" parent="."]
 texture = ExtResource( 19 )
 
-[node name="retro_file" parent="." instance=ExtResource( 21 )]
+[node name="Data" parent="." instance=ExtResource( 21 )]
 position = Vector2( 0, -100 )
 scale = Vector2( 5, 5 )
