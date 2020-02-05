@@ -1,9 +1,12 @@
 extends Node2D
 
+var relative_entity_pos = [null, 375, 200, 100, 50, 25, 0]
+
 func _physics_process(delta):
 	var player_location = $"../Grid".player_loc
 	var player_direction = $"../Grid".player_direction
 	var secrets = $"../Grid".secrets
+	var entities = $"../Grid".entities
 	var map = $"../Grid".wall_map
 	
 	if map:
@@ -15,6 +18,8 @@ func _physics_process(delta):
 			if location == player_location:
 				alert.text = "memory found:\n" + secrets[location]
 				alert.visible = true
+		for location in entities.keys():
+			map[location.y][location.x] = "x"
 			
 		for child in get_children():
 			child.visible = false
@@ -27,9 +32,16 @@ func _physics_process(delta):
 				get_node("l" + str(i)).visible = true
 			if f_tile == "■":
 				get_node("f" + str(i)).visible = true
-			elif f_tile == "*" and i > 0 and not $retro_file.visible:
-				$retro_file.scale = Vector2(5-i, 5-i)
-				$retro_file.visible = true
+			elif f_tile == "*" and i > 0 and not $Data.visible:
+				$Data.z_index = 6-i
+				$Data.scale = Vector2(5-i, 5-i)
+				$Data.position.y = relative_entity_pos[i]
+				$Data.visible = true
+			elif f_tile == "x" and i > 0 and not $Antivirus.visible:
+				$Antivirus.z_index = 6-i
+				$Antivirus.scale = Vector2(6-i, 6-i)
+				$Antivirus.position.y = relative_entity_pos[i]
+				$Antivirus.visible = true
 			if r_tile == "■":
 				get_node("r" + str(i)).visible = true
 		

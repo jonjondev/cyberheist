@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://visualisation.gd" type="Script" id=1]
 [ext_resource path="res://res/visualisation/base.png" type="Texture" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://res/visualisation/r0.png" type="Texture" id=19]
 [ext_resource path="res://res/visualisation/l0.png" type="Texture" id=20]
 [ext_resource path="res://data.tscn" type="PackedScene" id=21]
+[ext_resource path="res://antivirus.tscn" type="PackedScene" id=22]
+[ext_resource path="res://res/visualisation/l6.png" type="Texture" id=23]
+[ext_resource path="res://res/visualisation/r6.png" type="Texture" id=24]
 
 [node name="Visualisation" type="Node2D"]
 position = Vector2( 1024.16, 768.062 )
@@ -38,6 +41,12 @@ __meta__ = {
 
 [node name="f6" type="Sprite" parent="."]
 texture = ExtResource( 16 )
+
+[node name="l6" type="Sprite" parent="."]
+texture = ExtResource( 23 )
+
+[node name="r6" type="Sprite" parent="."]
+texture = ExtResource( 24 )
 
 [node name="base" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -94,5 +103,8 @@ texture = ExtResource( 20 )
 texture = ExtResource( 19 )
 
 [node name="Data" parent="." instance=ExtResource( 21 )]
-position = Vector2( 0, -100 )
 scale = Vector2( 5, 5 )
+
+[node name="Antivirus" parent="." instance=ExtResource( 22 )]
+position = Vector2( 0, 0 )
+scale = Vector2( 10, 10 )

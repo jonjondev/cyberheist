@@ -155,7 +155,7 @@ tracks/11/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "walk_backward"
 length = 2.0
 loop = true
@@ -304,8 +304,7 @@ tracks/11/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk_forward"
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -656,11 +655,12 @@ tracks/7/keys = {
 }
 
 [node name="Antivirus" type="Node2D"]
+position = Vector2( 0, -5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/rest = SubResource( 1 )
-anims/walk_backward = SubResource( 3 )
-anims/walk_forward = SubResource( 2 )
+anims/walk_backward = SubResource( 2 )
+anims/walk_forward = SubResource( 3 )
 anims/walk_left = SubResource( 4 )
 anims/walk_right = SubResource( 5 )
 
