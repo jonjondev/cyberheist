@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://visualisation.gd" type="Script" id=1]
 [ext_resource path="res://res/visualisation/base.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://res/visualisation/f2.png" type="Texture" id=18]
 [ext_resource path="res://res/visualisation/r0.png" type="Texture" id=19]
 [ext_resource path="res://res/visualisation/l0.png" type="Texture" id=20]
+[ext_resource path="res://data.tscn" type="PackedScene" id=21]
 
 [node name="Visualisation" type="Node2D"]
 position = Vector2( 1024.16, 768.062 )
@@ -91,3 +92,7 @@ texture = ExtResource( 20 )
 
 [node name="r0" type="Sprite" parent="."]
 texture = ExtResource( 19 )
+
+[node name="retro_file" parent="." instance=ExtResource( 21 )]
+position = Vector2( 0, -100 )
+scale = Vector2( 5, 5 )

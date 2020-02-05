@@ -7,6 +7,15 @@ func _physics_process(delta):
 	var map = $"../Grid".wall_map
 	
 	if map:
+		map = $"../Grid".wall_map.duplicate(true)
+		var alert = $"../Minimap/Alert"
+		alert.visible = false
+		for location in secrets.keys():
+			map[location.y][location.x] = "*"
+			if location == player_location:
+				alert.text = "memory found:\n" + secrets[location]
+				alert.visible = true
+			
 		for child in get_children():
 			child.visible = false
 		
@@ -18,6 +27,9 @@ func _physics_process(delta):
 				get_node("l" + str(i)).visible = true
 			if f_tile == "■":
 				get_node("f" + str(i)).visible = true
+			elif f_tile == "*" and i > 0 and not $retro_file.visible:
+				$retro_file.scale = Vector2(5-i, 5-i)
+				$retro_file.visible = true
 			if r_tile == "■":
 				get_node("r" + str(i)).visible = true
 		
@@ -26,13 +38,7 @@ func _physics_process(delta):
 				$f6.visible = true
 		$base.visible = true
 		$ColorRect.visible = true
-	
-		var alert = $"../Minimap/Alert"
-		alert.visible = false
-		for location in secrets.keys():
-			if location == player_location:
-				alert.text = "memory found:\n" + secrets[location]
-				alert.visible = true
+		
 		$"../Minimap/TTD".text = "disconnect in: " + str($"../../Console/RichTextLabel".ttd)
 
 
