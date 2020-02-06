@@ -8,8 +8,6 @@ var wall_map = null
 
 var entities = null
 
-onready var ticker = $"../Timer"
-
 func _ready():
 	$"../Timer".connect("timeout", self, "move_entities")
 
@@ -18,12 +16,12 @@ func move_entities():
 		for entity_loc in entities.keys():
 			var temp_dir = entities[entity_loc]
 			var temp_loc = move(entity_loc, temp_dir, 1)
-			entities.erase(entity_loc)
 			if is_empty(temp_loc):
-				entities[temp_loc] = temp_dir
+				entities.erase(entity_loc)
 			else:
 				temp_dir = flip_dir(temp_dir)
-				entities[move(entity_loc, flip_dir(temp_dir), 1)] = temp_dir
+				temp_loc = entity_loc
+			entities[temp_loc] = temp_dir
 
 func is_empty(location):
 	return wall_map[location.y][location.x] == " "
