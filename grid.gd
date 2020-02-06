@@ -22,6 +22,8 @@ func move_entities():
 				temp_dir = flip_dir(temp_dir)
 				temp_loc = entity_loc
 			entities[temp_loc] = temp_dir
+			if temp_loc == player_loc:
+				$"../../Console/RichTextLabel".network_disconnect()
 
 func is_empty(location):
 	return wall_map[location.y][location.x] == " "
@@ -58,3 +60,10 @@ func flip_dir(direction):
 		3:
 			new_dir = 1
 	return new_dir
+
+func reset_grid():
+	player_loc = null
+	player_direction = null
+	secrets = null
+	wall_map = null
+	entities = null

@@ -18,6 +18,7 @@ func _input(event):
 			grid.player_direction = 4 + grid.player_direction
 	if Input.is_action_pressed("escape"):
 		console.in_sim = false
+		$Grid.reset_grid()
 		toggle_view()
 
 func move(amount):

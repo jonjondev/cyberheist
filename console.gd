@@ -49,7 +49,7 @@ var dirs = {
 							["■", " ", "■", "■"],
 							["■", "■", "■", "■"],],
 				'entities': {
-					Vector2(1, 1): 'x',
+					Vector2(1, 1): 2,
 				},
 				'secrets': {
 					Vector2(2, 1): 'metadragon4',
@@ -144,14 +144,20 @@ func countdown():
 		ttd -= 1
 		text = text.replace("\nconnected, time til disconect: " + str(ttd+1) + "s", "\nconnected, time til disconect: " + str(ttd) + "s")
 		if ttd <= 0:
-			$TTDTimer.stop()
-			if in_sim:
-				$"../../Node2D".toggle_view()
-			text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
-			start_blink_freeze()
-			text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
-			online = false
-			current_dir = dirs['local_dir']
+			network_disconnect()
+
+func network_disconnect():
+	$TTDTimer.stop()
+	if in_sim:
+		$"../../Node2D".toggle_view()
+		$"../../Node2D/Grid".reset_grid()
+		in_sim = false
+	text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
+	start_blink_freeze()
+	text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
+	online = false
+	ttd = null
+	current_dir = dirs['local_dir']
 
 func _input(event):
 	if awake:
@@ -240,10 +246,7 @@ func get_response(line):
 						response = arg_error
 					else:
 						response = "disconnecting from network..."
-						online = false
-						text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
-						ttd = null
-						current_dir = dirs['local_dir']
+						network_disconnect()
 				else:
 					response = "disconnect: you are not online"
 			"view":
