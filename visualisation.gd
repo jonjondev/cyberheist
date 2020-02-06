@@ -57,18 +57,17 @@ func _physics_process(delta):
 
 func run_entity_animation(player_direction, entity_direction):
 	var new_animation = null
-	match int(abs(player_direction - entity_direction)):
-		0:
-			new_animation = "walk_backward"
-		1:
-			new_animation = "walk_right"
-		2:
-			new_animation = "walk_forward"
-		3:
-			new_animation = "walk_left"
+	var normalised_dir = player_direction - entity_direction
+	if normalised_dir == 0:
+		new_animation = "walk_backward"
+	elif int(abs(normalised_dir)) == 2:
+		new_animation = "walk_forward"
+	elif normalised_dir == -1 or normalised_dir == 3:
+		new_animation = "walk_right"
+	elif normalised_dir == 1 or normalised_dir == -3:
+		new_animation = "walk_left"
 	if $Antivirus/AnimationPlayer.current_animation != new_animation:
 		$Antivirus/AnimationPlayer.play(new_animation)
-	print($Antivirus/AnimationPlayer.current_animation)
 
 func get_location(location, direction, distance, offset):
 	var y_val
