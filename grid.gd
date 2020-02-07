@@ -13,6 +13,7 @@ func _ready():
 
 func move_entities():
 	if entities:
+		$"../Blip".play()
 		for entity_loc in entities.keys():
 			var temp_dir = entities[entity_loc]
 			var temp_loc = move(entity_loc, temp_dir, 1)
