@@ -53,7 +53,7 @@ func _physics_process(delta):
 		$base.visible = true
 		$ColorRect.visible = true
 		
-		$"../Minimap/TTD".text = "disconnect in: " + str($"../../Console/RichTextLabel".ttd)
+		$"../Minimap/TTD".text = "disconnect in: " + str($"../../ConsoleContainer/Console/RichTextLabel".ttd)
 
 func run_entity_animation(player_direction, entity_direction):
 	var new_animation = null

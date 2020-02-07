@@ -23,7 +23,7 @@ func move_entities():
 				temp_loc = entity_loc
 			entities[temp_loc] = temp_dir
 			if temp_loc == player_loc:
-				$"../../Console/RichTextLabel".network_disconnect()
+				$"../../ConsoleContainer/Console/RichTextLabel".network_disconnect()
 
 func is_empty(location):
 	return wall_map[location.y][location.x] == " "

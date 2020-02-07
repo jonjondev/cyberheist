@@ -193,7 +193,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Console" parent="." instance=ExtResource( 1 )]
+[node name="ConsoleContainer" type="Node2D" parent="."]
+z_index = -10
+
+[node name="Console" parent="ConsoleContainer" instance=ExtResource( 1 )]
 
 [node name="Node2D" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.5, 0.5 )

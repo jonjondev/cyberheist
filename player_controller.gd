@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var console = $"../Console/RichTextLabel"
+onready var console = $"../ConsoleContainer/Console/RichTextLabel"
 var minimised = true
 onready var grid = $Grid
 

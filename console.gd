@@ -111,7 +111,7 @@ func _ready():
 func on_system_start():
 	if start_times == 0:
 		text = "\nStarting system..."
-		$"../../Start".play()
+		$"../../../Start".play()
 	elif start_times == 1:
 		text = text + "\nInitialising system commands..."
 	elif start_times == 2:
@@ -149,8 +149,8 @@ func countdown():
 func network_disconnect():
 	$TTDTimer.stop()
 	if in_sim:
-		$"../../Node2D".toggle_view()
-		$"../../Node2D/Grid".reset_grid()
+		$"../../../Node2D".toggle_view()
+		$"../../../Node2D/Grid".reset_grid()
 		in_sim = false
 	text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 	start_blink_freeze()
@@ -319,8 +319,8 @@ func get_response(line):
 						if line[1].begins_with("@"):
 							response = "loading memory..."
 							in_sim = true
-							$"../../Node2D/Grid".set_simulation(memory)
-							$"../../Node2D".toggle_view()
+							$"../../../Node2D/Grid".set_simulation(memory)
+							$"../../../Node2D".toggle_view()
 						else:
 							response = "simulate: not a memory fragment"
 					else:
