@@ -13,7 +13,7 @@ func _ready():
 
 func move_entities():
 	if entities:
-		$"../Blip".play()
+		var disconnect = false
 		for entity_loc in entities.keys():
 			var temp_dir = entities[entity_loc]
 			var temp_loc = move(entity_loc, temp_dir, 1)
@@ -24,7 +24,12 @@ func move_entities():
 				temp_loc = entity_loc
 			entities[temp_loc] = temp_dir
 			if temp_loc == player_loc:
+				disconnect = true
 				$"../../ConsoleContainer/Console/RichTextLabel".network_disconnect()
+		if disconnect:
+			$"../Disconnect".play()
+		else:
+			$"../Blip".play()
 
 func is_empty(location):
 	return wall_map[location.y][location.x] == " "

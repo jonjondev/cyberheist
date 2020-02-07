@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player_controller.gd" type="Script" id=1]
 [ext_resource path="res://visualisation.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://res/Menlo-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://minimap.gd" type="Script" id=5]
 [ext_resource path="res://res/blip.wav" type="AudioStream" id=6]
+[ext_resource path="res://res/disconnect.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -153,4 +154,8 @@ autostart = true
 
 [node name="Blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -15.0
+
+[node name="Disconnect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 volume_db = -15.0

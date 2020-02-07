@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/disconnect.wav-ebc3d32c9db23b0b888bc1b4c1e14aca.sample"
+
+[deps]
+
+source_file="res://res/disconnect.wav"
+dest_files=[ "res://.import/disconnect.wav-ebc3d32c9db23b0b888bc1b4c1e14aca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
