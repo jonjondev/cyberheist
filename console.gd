@@ -146,15 +146,16 @@ func countdown():
 		if ttd <= 0:
 			network_disconnect()
 
-func network_disconnect():
+func network_disconnect(manual_disconnect = false):
 	$TTDTimer.stop()
 	if in_sim:
 		$"../../../Node2D".toggle_view()
 		$"../../../Node2D/Grid".reset_grid()
 		in_sim = false
-	text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 	start_blink_freeze()
-	text = text.replace("█", "").insert(text.length()-4, "\ndisconnected from network...")
+	if not manual_disconnect:
+		text = text.replace("█", "").insert(text.find_last("\n> "), "\ndisconnected from network...")
+	text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
 	online = false
 	ttd = null
 	current_dir = dirs['local_dir']
