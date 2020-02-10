@@ -29,7 +29,8 @@ var dirs = {
 				},
 			},
 	},
-	'available_networks': {
+	'available_networks': {},
+	'hidden_networks':  {
 		'pentagon': {
 			'ttd': 20,
 			'welcome.txt': "Welcome to the pentagon's secret stash!'",
@@ -224,7 +225,11 @@ func get_response(line):
 				if arg_error: 
 					response = arg_error
 				else:
-					response = PoolStringArray(dirs['available_networks'].keys()).join("\n")
+					var networks = dirs['available_networks'].keys()
+					if networks.size() > 0:
+						response = PoolStringArray(networks).join("\n")
+					else:
+						response = "networks: no known networks found"
 			"connect":
 				var arg_error = check_arguments(line, "view", 1)
 				if arg_error: 
@@ -239,7 +244,18 @@ func get_response(line):
 						online = true
 						current_dir = network
 					else:
-						response = "connect: network not found"
+						response = "connect: network unknown\nsearching for new networks...\n"
+						network = dirs['hidden_networks'].get(line[1])
+						if network:
+							dirs['available_networks'][line[1]] = network
+							text = text.replace("\nconnected, time til disconect: " + str(ttd) + "s", "\nconnected, time til disconect: -")
+							ttd = network['ttd']
+							$TTDTimer.start()
+							response =  response + "connecting to network...\nconnected, time til disconect: " + str(ttd) + "s"
+							online = true
+							current_dir = network
+						else:
+							response = response + "connect: network not found"
 			"disconnect":
 				if online:
 					var arg_error = check_arguments(line, "view", 0)
@@ -247,7 +263,7 @@ func get_response(line):
 						response = arg_error
 					else:
 						response = "disconnecting from network..."
-						network_disconnect()
+						network_disconnect(true)
 				else:
 					response = "disconnect: you are not online"
 			"view":
