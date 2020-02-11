@@ -199,12 +199,10 @@ func _input(event):
 	if awake:
 		if event is InputEventKey and event.pressed:
 			var event_key = event.as_text()
+			var character = PoolByteArray([event.unicode]).get_string_from_utf8()
 			var new_char = ""
-			var special_character = character_input_map.get(event_key)
-			if special_character:
-				new_char = special_character
-			elif event_key.length() == 1:
-				new_char = event.as_text().to_lower()
+			if character.length() == 1:
+				new_char = character
 			elif event_key == "Enter":
 				start_blink_freeze()
 				var line
@@ -217,10 +215,6 @@ func _input(event):
 				start_blink_freeze()
 				if text.substr(text.length()-4, text.length()).replace("█", "") != "\n> " and text.substr(text.length()-12, text.length()).replace("█", "") != "\npassword: ":
 					text = text.left(text.length() - 2) + "█"
-			elif event_key.begins_with("Shift+"):
-				var stripped_event_key = event_key.replace("Shift+", "")
-				if stripped_event_key.length() == 1 and regex_alphabetical.search(stripped_event_key):
-					new_char = stripped_event_key
 			if new_char:
 				start_blink_freeze()
 				text = text.insert(text.length() - 1, new_char)
