@@ -34,6 +34,7 @@ func move(amount):
 			loc_temp.x -= amount
 	if $Grid.is_empty(loc_temp):
 		grid.player_loc = loc_temp
+		$Grid.player_moved = true
 
 func toggle_view():
 	if minimised:

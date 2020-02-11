@@ -7,9 +7,18 @@ var secrets = null
 var wall_map = null
 
 var entities = null
+var player_moved = false
 
 func _ready():
 	$"../Timer".connect("timeout", self, "move_entities")
+
+func _process(delta):
+	if player_moved:
+		if entities.has(player_loc):
+			$"../../ConsoleContainer/Console/RichTextLabel".network_disconnect()
+			$"../Disconnect".play()
+			reset_grid()
+		player_moved = false
 
 func move_entities():
 	if entities:
