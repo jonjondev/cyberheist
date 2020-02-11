@@ -9,36 +9,44 @@ var in_sim = false
 
 var dirs = {
 	'local_dir': {
-		'welcome.txt': "Welcome to CyberHeist!",
-		'@1201': {
-				'player_loc': Vector2(4, 4),
+		'welcome.txt': "Hello, my friend!\n\nI am glad you have received my gift and successfully booted the system. I apologise for my previous lack of explanation however due to my effective retirement, I wished to pass along the tools of my livlihood to the younger generation, namely you. I've spent many fond hours on my Gridripper and feel compelled to pay it forward to someone such as yourself.\n\nIf you're reading this, then you must have figured out some of the cammands or at least how to view and open files - I knew you'd have the chops for this. I've left additional instructions on how to use this old beauty, however you can see a full list of commands by typing \"help\" if you wish. As you might have figured out, you can see a list of items in your current directory using the \"list\" command, and I suggest taking a look at some of the files in the instructions directory using \"goto\" (followed by the directory name).\n\nSee you there!",
+		'/instructions': {
+			'../': 'local_dir',
+			'next_step.txt': "Good job on making your way here. As you can see, computers are structured like a tree; full of files and directories that contain more files and directories. However now that you're inside a directory, you might be wondering how to get out of one. Well the simple answer is using the same \"goto\" command you used to get here, however you need to execute it on a special kind of directory which points to the folder that you came from called \"../\". Once you get back to the root directory you came from, you can open up the memories directory for something a little different. The password for the directory is \"open-sesame\".",
+		},
+		'/memories': {
+			'../': 'local_dir',
+			'password': 'open-sesame',
+			'about_memories.txt': "Excellent work on getting this far. Now's the fun part where I get to show you how to zip your way through the grid and you can see what this machine can really do!\n\nSo sometimes you'll need access to information on a system that is out of your reach, such as the password to the secrets directory in the home directory above you. This information is out of the user's purview, being held in system memory. The Gridripper, however, is a special piece of kit that can identify \"memory fragments\" that act like a backdoor to hidden information. These fragments can be seen with the \"list\" command and are prefixed with the @ symbol, followed by a memory value. In identifying them, the Gridripper can also simulate the computer's memory (using the \"simulate\" command), giving you access to the grid, where you'll be able to find all sorts of useful information. When you're in the simulation, you'll be able to use the arrow keys to navigate around.\n\nCheck out the memory fragment here to see if you can find the password for the secrets directory and we'll meet again there.",
+			'@1475': {
+				'player_loc': Vector2(1, 3),
 				'player_dir': 0,
 				'wall_map': [
-							["■", "■", "■", "■", "■", "■", "■", "■", "■", "■"],
-							["■", " ", " ", " ", " ", " ", " ", " ", " ", "■"],
-							["■", "■", " ", "■", " ", "■", "■", "■", " ", "■"],
-							["■", "■", "■", "■", " ", "■", "■", "■", "■", "■"],
-							["■", "■", "■", "■", " ", "■", "■", "■", "■", "■"],
-							["■", "■", "■", "■", "■", "■", "■", "■", "■", "■"],],
-				'entities': {
-					Vector2(1, 1): 1,
-				},
+							["■", "■", "■", "■"],
+							["■", " ", " ", "■"],
+							["■", " ", "■", "■"],
+							["■", " ", "■", "■"],
+							["■", "■", "■", "■"],],
+				'entities': {},
 				'secrets': {
-					Vector2(2, 2): 'metadragon4',
-					Vector2(5, 1): '123',
+					Vector2(2, 1): '123',
 				},
 			},
+		},
+		'/secrets': {
+			'../': 'local_dir',
+			'password': '123',
+			'the_secret.txt': "So in seeing the real power of the Gridripper, I feel I now owe you something of a secret about me. For my entire career navigating the grid for the big corporates, I've been doing a little something else in my spare time to sure up my retirement plans... I guess you could say... charging them a small, hidden fee.\n\nIt's mostly harmless to megacorporations such as themselves and I'm sure you'll find someone who'd happily see it as a service to society anyway.\n\nSo yes, that would be it then. The guilty past-time of an old console cowboy like myself.",
+			'networks.txt': "So the final thing I think you should know about the computer is how to connect to networks. I mean browsing these few files I've left you would be rather drab after a while anyway.\n\nTo connect to a network you use the \"connect\" command, followed by a network name. Once you connect to a network, it will be saved in a list of known networks that you can see with the \"networks\" command. Once you connect to a network, you will be given a time-til-disconnect, this is the maximum amount of time you will be allowed to stay connected to the network before being booted off.\n\nYou can try this out by connecting to a network I've set up for you to play around with by the name of \"safe_harbour\"",
+		},
 	},
 	'available_networks': {},
 	'hidden_networks':  {
-		'pentagon': {
-			'ttd': 20,
-			'welcome.txt': "Welcome to the pentagon's secret stash!'",
-			'dontopen.txt': "Give your balls a tug, you tit-fucker!",
-			'/secrets': {
-				'../': 'available_networks/pentagon',
-				'password': 'metadragon4',
-				'secret.txt': "This was a decoy, you dumby!",
+		'safe_harbour': {
+			'ttd': 60,
+			'copying.txt': "As you can see, we have limited time here, as dictated by the network rules, so I recommend you use the \"copy\" command on the other text file with my final notes so you can ready it back on the local system. To disconnect before the time runs out, simply use the \"disconnect\" command.",
+			'final_note.txt': "Well done to you! You've successfully jumped through all these little hoops I've set up for you but now you should know all of the basic functions of my beloved Gridripper. Please put her to good use and I'm sure she'll treat you right.\n\nIn terms of where to go from here, that's completely up to you, however if you arent off-put by my guilty pleasure, I'd start by taking a peek at (and maybe a few hundred thousand of) InterCorp's accounts department (network name \"intercorp_accounts\"). It shouldn't be too hard and I'm sure it'll be a fun, little experience.\n\nHappy hacking,\nConsole Cowboy Extraordinaire, J.M.",
+		},
 			},
 			'@1475': {
 				'player_loc': Vector2(1, 3),
