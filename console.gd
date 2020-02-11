@@ -210,7 +210,7 @@ func get_response(line):
 	else:
 		match line[0]:
 			"help":
-				response = "Commands:\n - help: displays the help menu, takes 0 args\n - list: displays all files in the current directory, takes 0 args\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - clear: clears the contents of the terminal output, takes 0 args\n---------------------------"
+				response = "Commands:\n - help: displays the help menu\n - clear: clears all text currently displayed on the terminal screen\n - list: displays all files in the current directory\n - view: displays the contents of a given file in the current directory, takes 1 arg for filename\n - goto: opens a given directory, takes 1 arg for directory name\n - copy: copies a file to the root of your local machine (will overwrite files by the same name), takes 1 arg for filename\n - networks: displays all known network names\n - connect: connects to any remote network (known or unknown), takes 1 arg for network name\n - disconnect: disconnects from the current network\n - simulate: runs a grid-simulation on a given memory fragment, takes 1 arg for memory fragment name\n---------------------------"
 			"list":
 				var arg_error = check_arguments(line, "list", 0)
 				if arg_error: 
