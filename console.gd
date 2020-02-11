@@ -287,8 +287,12 @@ func get_response(line):
 					var file = current_dir.get(line[1])
 					if file:
 						if line[1].ends_with(".txt"):
-							dirs['local_dir'][line[1]] = file
-							response = "file coppied to local system"
+							if line[1] == 'transfer_details.txt':
+								response = "\n\nGAME OVER, YOU WIN\n\nThanks for playing CyberHeist, if you liked playing the game, please let me know! Feel free to reach out to me on Twitter @JonJonRespawned with any feedback you have.\n\n"
+								awake = false
+							else:
+								dirs['local_dir'][line[1]] = file
+								response = "file coppied to local system"
 						else:
 							response = "copy: not a file"
 					else:
